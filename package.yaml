@@ -1,0 +1,58 @@
+name:                ApiTemplate
+version:             0.1.0.0
+github:              cackharot/haskell-web-api-template
+license:             MIT
+author:              Cackharot
+maintainer:          cackharot@gmail.com
+copyright:           2020 Cackharot
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
+
+dependencies:
+- base >= 4.11 && < 10
+- rio >= 0.1.19.0
+- http-types >= 0.12.3
+- warp >= 3.3.13
+- wai >= 3.2.2.1
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  ApiTemplate-exe:
+    main:                Main.hs
+    source-dirs:         app
+    dependencies:
+    - ApiTemplate
+    - optparse-simple
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+tests:
+  ApiTemplate-test:
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - ApiTemplate
+    - hspec
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N

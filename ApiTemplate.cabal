@@ -1,0 +1,81 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 7c155cfde24930e216f608974ac06d92a26d9c7243d8994616e2cc1dedcdc58b
+
+name:           ApiTemplate
+version:        0.1.0.0
+description:    Please see the README on Github at <https://github.com/cackharot/ApiTemplate#readme>
+homepage:       https://github.com/cackharot/ApiTemplate#readme
+bug-reports:    https://github.com/cackharot/ApiTemplate/issues
+author:         Cackharot
+maintainer:     cackharot@gmail.com
+copyright:      2020 Cackharot
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/cackharot/ApiTemplate
+
+library
+  exposed-modules:
+      Import
+      Run
+      Types
+      Util
+  other-modules:
+      Paths_ApiTemplate
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base >=4.11 && <10
+    , http-types >=0.12.3
+    , rio >=0.1.19.0
+    , wai >=3.2.2.1
+    , warp >=3.3.13
+  default-language: Haskell2010
+
+executable ApiTemplate-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_ApiTemplate
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      ApiTemplate
+    , base >=4.11 && <10
+    , http-types >=0.12.3
+    , optparse-simple
+    , rio >=0.1.19.0
+    , wai >=3.2.2.1
+    , warp >=3.3.13
+  default-language: Haskell2010
+
+test-suite ApiTemplate-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      UtilSpec
+      Paths_ApiTemplate
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      ApiTemplate
+    , base >=4.11 && <10
+    , hspec
+    , http-types >=0.12.3
+    , rio >=0.1.19.0
+    , wai >=3.2.2.1
+    , warp >=3.3.13
+  default-language: Haskell2010
