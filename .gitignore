@@ -45,6 +45,11 @@ Temporary Items
 .stack-work/
 bin/
 obj/
+.tmp
+.temp
+*.temp
+*.tmp
+tmp/
 
 TAGS
 

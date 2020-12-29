@@ -23,14 +23,21 @@ open http://localhost:3000/health
 _Endpoints_
 
 Info: http://localhost:3000/info
+
 Health: http://localhost:3000/health
+
 Metrics: http://localhost:3000/health
 
-Sample REST Resource:
+_Sample REST Resource:_
+
 GET http://localhost:3000/samples        # list all samples
+
 GET http://localhost:3000/samples/123    # fetch the given sample by id
+
 POST http://localhost:3000/samples/-1    # create new sample resource 
+
 PUT http://localhost:3000/samples/123    # Modify sample by id
+
 DELETE http://localhost:3000/samples/123 # Delete sample by id
 
 ## Run tests
