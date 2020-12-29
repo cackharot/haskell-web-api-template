@@ -39,6 +39,27 @@ packages:
       sha256: 29bec20897b302bdf1a277ffcd70b4f35d200584199a4783aeb2ea8c69d8a4ae
   original:
     hackage: network-byte-order-0.1.6@sha256:1a8202ac91e151a181b9c9dfe5319e71869890d94a5cf96fd234ccf9c0af85d3,1299
+- completed:
+    hackage: wai-util-0.8@sha256:7181e748ccd405ecef5a586c954acb3d62b55b8eb7368efb5d80d6bf38e8211b,1260
+    pantry-tree:
+      size: 255
+      sha256: b80c70adc40b866a4bf6ba0716806efdcce14235e1e6ae69a25cfde679d771e7
+  original:
+    hackage: wai-util-0.8@sha256:7181e748ccd405ecef5a586c954acb3d62b55b8eb7368efb5d80d6bf38e8211b,1260
+- completed:
+    hackage: wai-dispatch-0.1@sha256:7be4d636a625b767e2a74bf91927ae612c41482eb64b8c964e8c752d550120c3,1256
+    pantry-tree:
+      size: 263
+      sha256: 4c7848c450640362945395db58c4511caa5beda33673c9299c3314d15a892480
+  original:
+    hackage: wai-dispatch-0.1@sha256:7be4d636a625b767e2a74bf91927ae612c41482eb64b8c964e8c752d550120c3,1256
+- completed:
+    hackage: http-accept-0.2@sha256:c55935f6ff4984aee96ebc130cc9aa6919d322becb613c049a81203cec9fe65e,1154
+    pantry-tree:
+      size: 262
+      sha256: faed5502bca51dd31fdff8277c344278bad508f3e695b6b767530e648a7e00a7
+  original:
+    hackage: http-accept-0.2@sha256:c55935f6ff4984aee96ebc130cc9aa6919d322becb613c049a81203cec9fe65e,1154
 snapshots:
 - completed:
     size: 500539

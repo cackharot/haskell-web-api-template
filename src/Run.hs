@@ -4,10 +4,11 @@ module Run (runApi) where
 
 import           Import
 
-import           Network.HTTP.Types        (status200)
-import           Network.HTTP.Types.Header (hContentType)
-import           Network.Wai               (Application, responseLBS)
-import           Network.Wai.Handler.Warp  (runEnv)
+import           Network.HTTP.Types                   (status200)
+import           Network.HTTP.Types.Header            (hContentType)
+import           Network.Wai                          (Application, responseLBS)
+import           Network.Wai.Handler.Warp             (runEnv)
+import           Network.Wai.Middleware.RequestLogger (logStdoutDev)
 
 app :: Application
 app req f =
@@ -17,4 +18,4 @@ runApi :: RIO App ()
 runApi = do
   let port = 3000 :: Int
   logInfo $ "Started application on " <> (fromString $ show port)
-  liftIO $ runEnv port app
+  liftIO $ runEnv port $ logStdoutDev $ app
