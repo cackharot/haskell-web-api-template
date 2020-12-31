@@ -14,14 +14,18 @@ description:         Please see the README on Github at <https://github.com/cack
 
 dependencies:
 - base >= 4.11 && < 10
-- rio >= 0.1.18.0
+- rio >= 0.1.14.0
+- text >= 1.2.3.1
+- aeson >= 1.4.6.0
 - http-types >= 0.12.3
-- warp >= 3.3.13
+- warp >= 3.3.5
 - wai >= 3.2.2.1
 - wai-extra
-- prometheus-client >= 1.0.1
+- prometheus-client >= 1.0.0
 - wai-middleware-prometheus >= 1.0.0
 - prometheus-metrics-ghc >= 1.0.1.1
+- servant
+- servant-server
 
 ghc-options:
 - -Wall

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 865a22bed152512b8f57755b8c6337a708a8e9e3a15c9852ad2a155adc9768a5
+-- hash: a0ac482e0390b8db9b9ce27231ad4012dd3c45d0c8888c1ea28abbc67c472900
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Battery
       Import
       Run
       Types
@@ -37,15 +38,19 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.11 && <10
+      aeson >=1.4.6.0
+    , base >=4.11 && <10
     , http-types >=0.12.3
-    , prometheus-client >=1.0.1
+    , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
-    , rio >=0.1.18.0
+    , rio >=0.1.14.0
+    , servant
+    , servant-server
+    , text >=1.2.3.1
     , wai >=3.2.2.1
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
-    , warp >=3.3.13
+    , warp >=3.3.5
   default-language: Haskell2010
 
 executable ApiTemplate-exe
@@ -57,16 +62,20 @@ executable ApiTemplate-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
   build-depends:
       ApiTemplate
+    , aeson >=1.4.6.0
     , base >=4.11 && <10
     , http-types >=0.12.3
     , optparse-simple
-    , prometheus-client >=1.0.1
+    , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
-    , rio >=0.1.18.0
+    , rio >=0.1.14.0
+    , servant
+    , servant-server
+    , text >=1.2.3.1
     , wai >=3.2.2.1
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
-    , warp >=3.3.13
+    , warp >=3.3.5
   default-language: Haskell2010
 
 test-suite ApiTemplate-test
@@ -80,14 +89,18 @@ test-suite ApiTemplate-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       ApiTemplate
+    , aeson >=1.4.6.0
     , base >=4.11 && <10
     , hspec
     , http-types >=0.12.3
-    , prometheus-client >=1.0.1
+    , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
-    , rio >=0.1.18.0
+    , rio >=0.1.14.0
+    , servant
+    , servant-server
+    , text >=1.2.3.1
     , wai >=3.2.2.1
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
-    , warp >=3.3.13
+    , warp >=3.3.5
   default-language: Haskell2010

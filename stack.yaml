@@ -17,7 +17,8 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-16.12
+# resolver: lts-16.27
+resolver: lts-14.27
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -33,14 +34,6 @@ packages:
 extra-deps:
 - prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
 - wai-middleware-prometheus-1.0.0@sha256:1625792914fb2139f005685be8ce519111451cfb854816e430fbf54af46238b4,1314
-# - rio-0.1.19.0@sha256:13e9ce4561a87ae49d7600b0dd63482dd98d285147ce431a52bccbe73e3031df,3688
-# - unliftio-0.2.13.1@sha256:cdbca997c6c113f8ba78847979d4a90250a1e4681a5f3784649ab3c8164d94ff,3327
-# - warp-3.3.13@sha256:0db023ae6b65743a82b8ec23db60e73c6046dffa03884eae3289a248e50965ba,10798
-# - http2-2.0.5@sha256:a624242e130f4c631c1145174ee8448d82563d8154ae1f3eb14b8e9eb069ef83,17644
-# - network-byte-order-0.1.6@sha256:1a8202ac91e151a181b9c9dfe5319e71869890d94a5cf96fd234ccf9c0af85d3,1299
-# - wai-util-0.8@sha256:7181e748ccd405ecef5a586c954acb3d62b55b8eb7368efb5d80d6bf38e8211b,1260
-# - wai-dispatch-0.1@sha256:7be4d636a625b767e2a74bf91927ae612c41482eb64b8c964e8c752d550120c3,1256
-# - http-accept-0.2@sha256:c55935f6ff4984aee96ebc130cc9aa6919d322becb613c049a81203cec9fe65e,1154
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

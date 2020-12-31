@@ -12,8 +12,8 @@ main :: IO ()
 main = do
   (options, ()) <- simpleOptions
     $(simpleVersion Paths_ApiTemplate.version)
-    "Header for command line arguments"
-    "Program description, also for command line arguments"
+    "Run a web api"
+    "API for __domain__ app"
     (Options
        <$> switch ( long "verbose"
                  <> short 'v'

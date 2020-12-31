@@ -50,6 +50,7 @@ obj/
 *.temp
 *.tmp
 tmp/
+.#*
 
 TAGS
 

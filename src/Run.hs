@@ -1,7 +1,10 @@
+{-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TypeOperators     #-}
 module Run (runApi) where
 
+import           Battery
 import           Import
 
 import           Network.HTTP.Types                   (status200)
@@ -12,11 +15,23 @@ import qualified Network.Wai.Middleware.Prometheus    as P
 import           Network.Wai.Middleware.RequestLogger (logStdout, logStdoutDev)
 import qualified Prometheus                           as P
 import qualified Prometheus.Metric.GHC                as P
+import           Servant
 import           System.Environment                   (lookupEnv)
 
-app :: Application
-app req f =
-    f $ responseLBS status200 [(hContentType, "text/plain")] "Hello world!"
+type API = BatteryAPI
+  :<|> "empty" :> EmptyAPI
+
+appAPI:: Proxy API
+appAPI = Proxy
+
+appServer = batteryServer :<|> emptyServer
+
+app1 :: Application
+app1 = serve appAPI appServer
+
+-- app :: Application
+-- app req f =
+--     f $ responseLBS status200 [(hContentType, "text/plain")] "Hello world!"
 
 appMiddlewares :: Bool -> Application -> Application
 appMiddlewares isProdEnv = logType . (P.prometheus P.def)
@@ -32,4 +47,4 @@ runApi = do
   isProdEnv <- liftIO $ do
     isProdEnv <- maybe False (== "PRODUCTION") <$> lookupEnv "APP_ENVIRONMENT"
     return isProdEnv
-  liftIO $ runEnv port $ appMiddlewares isProdEnv $ app
+  liftIO $ runEnv port $ appMiddlewares isProdEnv $ app1
