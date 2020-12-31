@@ -5,64 +5,22 @@
 
 packages:
 - completed:
-    hackage: rio-0.1.19.0@sha256:13e9ce4561a87ae49d7600b0dd63482dd98d285147ce431a52bccbe73e3031df,3688
+    hackage: prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
     pantry-tree:
-      size: 4801
-      sha256: 0ccc42b397bf6c5422945b06d6c01b02c2a27c6e943ea34b5344a538a31aa94b
+      size: 293
+      sha256: 0732085a4148b269bbc15eeb7ab422e65ac287878a42a7388a7b6e140ec740e5
   original:
-    hackage: rio-0.1.19.0@sha256:13e9ce4561a87ae49d7600b0dd63482dd98d285147ce431a52bccbe73e3031df,3688
+    hackage: prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
 - completed:
-    hackage: unliftio-0.2.13.1@sha256:cdbca997c6c113f8ba78847979d4a90250a1e4681a5f3784649ab3c8164d94ff,3327
+    hackage: wai-middleware-prometheus-1.0.0@sha256:1625792914fb2139f005685be8ce519111451cfb854816e430fbf54af46238b4,1314
     pantry-tree:
-      size: 2229
-      sha256: 52654809e39ffa26b334a56350119b63dcf022c35b380f0733893b68959188b3
+      size: 307
+      sha256: 6d64803c639ed4c7204ea6fab0536b97d3ee16cdecb9b4a883cd8e56d3c61402
   original:
-    hackage: unliftio-0.2.13.1@sha256:cdbca997c6c113f8ba78847979d4a90250a1e4681a5f3784649ab3c8164d94ff,3327
-- completed:
-    hackage: warp-3.3.13@sha256:0db023ae6b65743a82b8ec23db60e73c6046dffa03884eae3289a248e50965ba,10798
-    pantry-tree:
-      size: 3899
-      sha256: 5242276b306a6c921fed1f4d29b4041c1ac4df0f863b535e1046ed6f3114f3c9
-  original:
-    hackage: warp-3.3.13@sha256:0db023ae6b65743a82b8ec23db60e73c6046dffa03884eae3289a248e50965ba,10798
-- completed:
-    hackage: http2-2.0.5@sha256:a624242e130f4c631c1145174ee8448d82563d8154ae1f3eb14b8e9eb069ef83,17644
-    pantry-tree:
-      size: 44789
-      sha256: 4a472096ccf9115e94435407414da050165df6551c3e4d48fd63fb0832d8879a
-  original:
-    hackage: http2-2.0.5@sha256:a624242e130f4c631c1145174ee8448d82563d8154ae1f3eb14b8e9eb069ef83,17644
-- completed:
-    hackage: network-byte-order-0.1.6@sha256:1a8202ac91e151a181b9c9dfe5319e71869890d94a5cf96fd234ccf9c0af85d3,1299
-    pantry-tree:
-      size: 280
-      sha256: 29bec20897b302bdf1a277ffcd70b4f35d200584199a4783aeb2ea8c69d8a4ae
-  original:
-    hackage: network-byte-order-0.1.6@sha256:1a8202ac91e151a181b9c9dfe5319e71869890d94a5cf96fd234ccf9c0af85d3,1299
-- completed:
-    hackage: wai-util-0.8@sha256:7181e748ccd405ecef5a586c954acb3d62b55b8eb7368efb5d80d6bf38e8211b,1260
-    pantry-tree:
-      size: 255
-      sha256: b80c70adc40b866a4bf6ba0716806efdcce14235e1e6ae69a25cfde679d771e7
-  original:
-    hackage: wai-util-0.8@sha256:7181e748ccd405ecef5a586c954acb3d62b55b8eb7368efb5d80d6bf38e8211b,1260
-- completed:
-    hackage: wai-dispatch-0.1@sha256:7be4d636a625b767e2a74bf91927ae612c41482eb64b8c964e8c752d550120c3,1256
-    pantry-tree:
-      size: 263
-      sha256: 4c7848c450640362945395db58c4511caa5beda33673c9299c3314d15a892480
-  original:
-    hackage: wai-dispatch-0.1@sha256:7be4d636a625b767e2a74bf91927ae612c41482eb64b8c964e8c752d550120c3,1256
-- completed:
-    hackage: http-accept-0.2@sha256:c55935f6ff4984aee96ebc130cc9aa6919d322becb613c049a81203cec9fe65e,1154
-    pantry-tree:
-      size: 262
-      sha256: faed5502bca51dd31fdff8277c344278bad508f3e695b6b767530e648a7e00a7
-  original:
-    hackage: http-accept-0.2@sha256:c55935f6ff4984aee96ebc130cc9aa6919d322becb613c049a81203cec9fe65e,1154
+    hackage: wai-middleware-prometheus-1.0.0@sha256:1625792914fb2139f005685be8ce519111451cfb854816e430fbf54af46238b4,1314
 snapshots:
 - completed:
-    size: 500539
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/13/29.yaml
-    sha256: 006398c5e92d1d64737b7e98ae4d63987c36808814504d1451f56ebd98093f75
-  original: lts-13.29
+    size: 532377
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/12.yaml
+    sha256: f914cfa23fef85bdf895e300a8234d9d0edc2dbec67f4bc9c53f85867c50eab6
+  original: lts-16.12

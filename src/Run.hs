@@ -8,14 +8,27 @@ import           Network.HTTP.Types                   (status200)
 import           Network.HTTP.Types.Header            (hContentType)
 import           Network.Wai                          (Application, responseLBS)
 import           Network.Wai.Handler.Warp             (runEnv)
-import           Network.Wai.Middleware.RequestLogger (logStdoutDev)
+import qualified Network.Wai.Middleware.Prometheus    as P
+import           Network.Wai.Middleware.RequestLogger (logStdout, logStdoutDev)
+import qualified Prometheus                           as P
+import qualified Prometheus.Metric.GHC                as P
+import           System.Environment                   (lookupEnv)
 
 app :: Application
 app req f =
     f $ responseLBS status200 [(hContentType, "text/plain")] "Hello world!"
 
+appMiddlewares :: Bool -> Application -> Application
+appMiddlewares isProdEnv = log . (P.prometheus P.def)
+  where
+    log = if isProdEnv then logStdout else logStdoutDev
+
 runApi :: RIO App ()
 runApi = do
   let port = 3000 :: Int
   logInfo $ "Started application on " <> (fromString $ show port)
-  liftIO $ runEnv port $ logStdoutDev $ app
+  _ <- P.register P.ghcMetrics
+  isProdEnv <- liftIO $ do
+    isProdEnv <- maybe False (== "PRODUCTION") <$> lookupEnv "APP_ENVIRONMENT"
+    return isProdEnv
+  liftIO $ runEnv port $ appMiddlewares isProdEnv $ app

@@ -14,13 +14,14 @@ description:         Please see the README on Github at <https://github.com/cack
 
 dependencies:
 - base >= 4.11 && < 10
-- rio >= 0.1.19.0
+- rio >= 0.1.18.0
 - http-types >= 0.12.3
 - warp >= 3.3.13
 - wai >= 3.2.2.1
-- wai-util >= 0.8
 - wai-extra
-# - wai-dispatch >= 0.1
+- prometheus-client >= 1.0.1
+- wai-middleware-prometheus >= 1.0.0
+- prometheus-metrics-ghc >= 1.0.1.1
 
 ghc-options:
 - -Wall
@@ -46,6 +47,7 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -with-rtsopts=-T
 
 tests:
   ApiTemplate-test:
