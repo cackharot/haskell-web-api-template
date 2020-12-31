@@ -19,12 +19,13 @@ app req f =
     f $ responseLBS status200 [(hContentType, "text/plain")] "Hello world!"
 
 appMiddlewares :: Bool -> Application -> Application
-appMiddlewares isProdEnv = log . (P.prometheus P.def)
+appMiddlewares isProdEnv = logType . (P.prometheus P.def)
   where
-    log = if isProdEnv then logStdout else logStdoutDev
+    logType = if isProdEnv then logStdout else logStdoutDev
 
 runApi :: RIO App ()
 runApi = do
+  hSetBuffering stdin LineBuffering
   let port = 3000 :: Int
   logInfo $ "Started application on " <> (fromString $ show port)
   _ <- P.register P.ghcMetrics

@@ -26,7 +26,7 @@ Info: http://localhost:3000/info
 
 Health: http://localhost:3000/health
 
-Metrics: http://localhost:3000/health
+Metrics: http://localhost:3000/metrics
 
 _Sample REST Resource:_
 
