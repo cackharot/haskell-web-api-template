@@ -1,23 +1,22 @@
+{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE DeriveGeneric #-}
 module Types where
 
 import qualified Data.Aeson  as A
--- import qualified Data.Aeson.Parser
--- import           Data.Aeson.Types
 import           RIO
 import           RIO.Process
 
 -- | Command line arguments
 data Options = Options
   { optionsVerbose :: !Bool
+  , port           :: !Int
   }
 
 data App = App
   { appLogFunc        :: !LogFunc
   , appProcessContext :: !ProcessContext
   , appOptions        :: !Options
-  -- Add other app-specific configuration information here
+  , appInfoDetail     :: !InfoDetail
   }
 
 instance HasLogFunc App where
@@ -25,13 +24,15 @@ instance HasLogFunc App where
 instance HasProcessContext App where
   processContextL = lens appProcessContext (\x y -> x { appProcessContext = y })
 
-
 data InfoDetail = InfoDetail
   {
-    appName        :: Text
-  , appVersion     :: Text
-  , appDescription :: Text
+    appName        :: !Text
+  , appVersion     :: !Text
+  , appDescription :: !Text
   }
   deriving (Show,Eq,Generic)
 
-instance A.ToJSON InfoDetail
+instance A.ToJSON InfoDetail where
+  toJSON =
+    A.genericToJSON
+      A.defaultOptions {A.fieldLabelModifier = A.camelTo2 '_' . drop 3}

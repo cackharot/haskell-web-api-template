@@ -14,14 +14,10 @@ type HealthAPI= "health" :> Get '[JSON] Text
 
 type BatteryAPI = InfoAPI :<|> HealthAPI
 
-infoServer :: Server InfoAPI
-infoServer = return $ InfoDetail "test" "test" "test"
+infoServer :: InfoDetail -> Server InfoAPI
+infoServer d = return d
 
 healthServer :: Server HealthAPI
 healthServer = return "Healthy"
 
-batteryServer :: Servant.Handler InfoDetail
-                       :<|> Servant.Handler Text
-batteryServer = infoServer :<|> healthServer
-
-
+batteryServer d = infoServer d :<|> healthServer
