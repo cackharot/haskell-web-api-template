@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a0ac482e0390b8db9b9ce27231ad4012dd3c45d0c8888c1ea28abbc67c472900
+-- hash: 7160a07a0dd2e81c54f86a04d53e307dcef06de1e6a06314a85db3597a80da37
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -27,8 +27,9 @@ source-repository head
 
 library
   exposed-modules:
-      Battery
       Import
+      Network.Wai.Middleware.Health
+      Network.Wai.Middleware.Info
       Run
       Types
       Util
@@ -40,6 +41,7 @@ library
   build-depends:
       aeson >=1.4.6.0
     , base >=4.11 && <10
+    , bytestring >=0.10.8.2
     , http-types >=0.12.3
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
@@ -64,6 +66,7 @@ executable ApiTemplate-exe
       ApiTemplate
     , aeson >=1.4.6.0
     , base >=4.11 && <10
+    , bytestring >=0.10.8.2
     , http-types >=0.12.3
     , optparse-simple
     , prometheus-client >=1.0.0
@@ -91,6 +94,7 @@ test-suite ApiTemplate-test
       ApiTemplate
     , aeson >=1.4.6.0
     , base >=4.11 && <10
+    , bytestring >=0.10.8.2
     , hspec
     , http-types >=0.12.3
     , prometheus-client >=1.0.0
