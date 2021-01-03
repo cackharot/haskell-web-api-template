@@ -5,19 +5,26 @@
 
 packages:
 - completed:
+    hackage: wai-cli-0.2.0@sha256:16c864bc829f4572fa3ea72a1a1d9aae23fe0b076069c1e58a42e4224f819ce9,1771
+    pantry-tree:
+      size: 269
+      sha256: 114d289439b83649db9a522a508b0bfd1da018834576a27e6fcc6dde99ead1af
+  original:
+    hackage: wai-cli-0.2.0
+- completed:
     hackage: prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
     pantry-tree:
       size: 293
       sha256: 0732085a4148b269bbc15eeb7ab422e65ac287878a42a7388a7b6e140ec740e5
   original:
-    hackage: prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
+    hackage: prometheus-metrics-ghc-1.0.1.1
 - completed:
     hackage: wai-middleware-prometheus-1.0.0@sha256:1625792914fb2139f005685be8ce519111451cfb854816e430fbf54af46238b4,1314
     pantry-tree:
       size: 307
       sha256: 6d64803c639ed4c7204ea6fab0536b97d3ee16cdecb9b4a883cd8e56d3c61402
   original:
-    hackage: wai-middleware-prometheus-1.0.0@sha256:1625792914fb2139f005685be8ce519111451cfb854816e430fbf54af46238b4,1314
+    hackage: wai-middleware-prometheus-1.0.0
 snapshots:
 - completed:
     size: 524996

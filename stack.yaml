@@ -32,8 +32,9 @@ packages:
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
 extra-deps:
-- prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
-- wai-middleware-prometheus-1.0.0@sha256:1625792914fb2139f005685be8ce519111451cfb854816e430fbf54af46238b4,1314
+- wai-cli-0.2.0
+- prometheus-metrics-ghc-1.0.1.1
+- wai-middleware-prometheus-1.0.0
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

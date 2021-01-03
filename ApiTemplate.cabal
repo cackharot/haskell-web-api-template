@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6093683c1556dc82519d15bc759e6135711999649b8640652fd2c58d6c967128
+-- hash: 7ddb941a16a1f6c2b62a8d23b8de1196a238a0fd697a7d23abd926810023ff52
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -55,6 +55,7 @@ library
     , text >=1.2.3.1
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
+    , wai-cli
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
     , warp >=3.3.5
@@ -84,6 +85,7 @@ executable ApiTemplate-exe
     , text >=1.2.3.1
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
+    , wai-cli
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
     , warp >=3.3.5
@@ -115,6 +117,7 @@ test-suite ApiTemplate-test
     , text >=1.2.3.1
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
+    , wai-cli
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
     , warp >=3.3.5
