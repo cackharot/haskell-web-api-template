@@ -3,24 +3,28 @@
 {-# LANGUAGE TemplateHaskell   #-}
 module Main (main) where
 
+import           Configuration.Dotenv       (defaultConfig, loadFile)
 import           Import
 import           Options.Applicative.Simple
 import qualified Paths_ApiTemplate
 import           RIO.Process
 import           Run
+import           System.Envy
 
 main :: IO ()
 main = do
   let ver = $(simpleVersion Paths_ApiTemplate.version)
+  _ <- loadFile defaultConfig
   (options, ()) <- optionsParser ver
   lo <- logOptionsHandle stderr (optionsVerbose options)
   pc <- mkDefaultProcessContext
+  infoDetail <- getAppEnv
   withLogFunc lo $ \lf ->
     let app = App
           { appLogFunc = lf
           , appProcessContext = pc
           , appOptions = options
-          , appInfoDetail = InfoDetail "WebAPI Template" (fromString ver) "WebAPI tempalte with batteries included!"
+          , appInfoDetail = infoDetail
           }
      in runRIO app runApi
 
@@ -34,11 +38,19 @@ optionsParser version = simpleOptions
                 <> short 'v'
                 <> help "Verbose output?"
                 )
-    <*> option auto (long "port"
-                    <> short 'p'
-                    <> help "Application port to bind to"
-                    <> showDefault
-                    <> value 3000
-                    <> metavar "INT")
   )
   empty
+
+-- getAppEnv :: IO (Either String InfoDetail)
+getAppEnv :: IO InfoDetail
+getAppEnv = do
+  c <- runEnv $ gFromEnvCustom opt (Just d)
+  return $ either (\_ -> d) id c
+  where
+    opt = defOption
+    d =
+      InfoDetail
+        "WebAPI Template"
+        (fromString ver)
+        "WebAPI tempalte with batteries included!"
+    ver = $(simpleVersion Paths_ApiTemplate.version)

@@ -4,6 +4,7 @@
 {-# LANGUAGE TypeOperators     #-}
 module Run (runApi) where
 
+import qualified Domain.API.User                      as U
 import           Import
 
 import           Data.Aeson                           (encode)
@@ -22,13 +23,14 @@ import           Servant
 import           System.Environment                   (lookupEnv)
 import           System.IO                            (hPutStrLn, stderr)
 
-type API = EmptyAPI
+type API = U.UserAPI :<|> EmptyAPI
+
+-- type AppM = ReaderT Handler
 
 appAPI:: Proxy API
 appAPI = Proxy
 
-appServer :: ServerT EmptyAPI m
-appServer = emptyServer
+appServer =  U.server :<|> emptyServer
 
 app :: Application
 app = serve appAPI $ appServer
@@ -45,8 +47,9 @@ runApi = do
   appConfig <- ask
   eport <-
     liftIO $
-    fromMaybe (port $ appOptions appConfig) . (>>= readMaybe) <$>
+    fromMaybe 3000 . (>>= readMaybe) <$>
     lookupEnv "PORT"
+  userRepo <- liftIO $ U.newRepo
   let settings =
         setPort eport $
         setBeforeMainLoop
@@ -56,6 +59,5 @@ runApi = do
   _ <- P.register P.ghcMetrics
   isProdEnv <-
     liftIO $ do maybe False (== "PRODUCTION") <$> lookupEnv "APP_ENVIRONMENT"
-  liftIO $
-    runSettings settings $
-    appMiddlewares isProdEnv (appInfoDetail appConfig) $ app
+  liftIO $ do
+    runSettings settings $ appMiddlewares isProdEnv (appInfoDetail appConfig) $ app

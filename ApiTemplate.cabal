@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7160a07a0dd2e81c54f86a04d53e307dcef06de1e6a06314a85db3597a80da37
+-- hash: 6093683c1556dc82519d15bc759e6135711999649b8640652fd2c58d6c967128
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -27,6 +27,8 @@ source-repository head
 
 library
   exposed-modules:
+      Domain.API.User
+      Domain.Types
       Import
       Network.Wai.Middleware.Health
       Network.Wai.Middleware.Info
@@ -42,6 +44,8 @@ library
       aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , dotenv >=0.8.0.4
+    , envy >=2.0.0.0
     , http-types >=0.12.3
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
@@ -49,6 +53,7 @@ library
     , servant
     , servant-server
     , text >=1.2.3.1
+    , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
@@ -67,6 +72,8 @@ executable ApiTemplate-exe
     , aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , dotenv >=0.8.0.4
+    , envy >=2.0.0.0
     , http-types >=0.12.3
     , optparse-simple
     , prometheus-client >=1.0.0
@@ -75,6 +82,7 @@ executable ApiTemplate-exe
     , servant
     , servant-server
     , text >=1.2.3.1
+    , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
@@ -95,6 +103,8 @@ test-suite ApiTemplate-test
     , aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , dotenv >=0.8.0.4
+    , envy >=2.0.0.0
     , hspec
     , http-types >=0.12.3
     , prometheus-client >=1.0.0
@@ -103,6 +113,7 @@ test-suite ApiTemplate-test
     , servant
     , servant-server
     , text >=1.2.3.1
+    , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
     , wai-extra
     , wai-middleware-prometheus >=1.0.0
