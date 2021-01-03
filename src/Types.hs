@@ -6,15 +6,9 @@ import qualified Data.Aeson  as A
 import           RIO
 import           RIO.Process
 
--- | Command line arguments
-data Options = Options
-  { optionsVerbose :: !Bool
-  }
-
 data App = App
   { appLogFunc        :: !LogFunc
   , appProcessContext :: !ProcessContext
-  , appOptions        :: !Options
   , appInfoDetail     :: !InfoDetail
   }
 

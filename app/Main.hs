@@ -13,35 +13,18 @@ import           System.Envy
 
 main :: IO ()
 main = do
-  let ver = $(simpleVersion Paths_ApiTemplate.version)
   _ <- loadFile defaultConfig
-  (options, ()) <- optionsParser ver
-  lo <- logOptionsHandle stderr (optionsVerbose options)
-  pc <- mkDefaultProcessContext
   infoDetail <- getAppEnv
+  lo <- logOptionsHandle stderr False
+  pc <- mkDefaultProcessContext
   withLogFunc lo $ \lf ->
     let app = App
           { appLogFunc = lf
           , appProcessContext = pc
-          , appOptions = options
           , appInfoDetail = infoDetail
           }
      in runRIO app runApi
 
-optionsParser :: Monoid b => String -> IO (Options, b)
-optionsParser version = simpleOptions
-  version
-  "WebAPI" -- name of the domain app
-  "API interface for the domain"
-  (Options
-      <$> switch ( long "verbose"
-                <> short 'v'
-                <> help "Verbose output?"
-                )
-  )
-  empty
-
--- getAppEnv :: IO (Either String InfoDetail)
 getAppEnv :: IO InfoDetail
 getAppEnv = do
   c <- runEnv $ gFromEnvCustom opt (Just d)
