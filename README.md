@@ -9,7 +9,16 @@ This serves as a base to create API projects that comes with the following featu
 - JSON as input/output serialization using Aeson library
 - Define the REST interface using Servant library
 - Health & Info endpoints
+- Application config via ENVIRONMENT variables (via dotenv & envy)
 - Prometheus metrics endpoint
+
+## TODO
+
+[x] Integrate with RIO
+[x] Integrate with Servant
+[x] Integrate with doenv & envy
+[x] Integrate with Prometheus
+[] Integrate with wai-util
 
 ## Build & Run
 
