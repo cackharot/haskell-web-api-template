@@ -35,6 +35,8 @@ extra-deps:
 - wai-cli-0.2.0
 - prometheus-metrics-ghc-1.0.1.1
 - wai-middleware-prometheus-1.0.0
+- servant-0.18.2
+- servant-server-0.18.2
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

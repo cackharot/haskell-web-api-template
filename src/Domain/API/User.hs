@@ -6,8 +6,8 @@ module Domain.API.User
   (server, UserAPI, userAPI, newRepo)
 where
 
+import           Import
 import           Domain.Types
-import           RIO
 import           Servant
 import qualified Data.HashMap.Strict as B
 
@@ -16,7 +16,8 @@ type UserAPI = "users" :> Get '[JSON] [User]
 userAPI :: Proxy UserAPI
 userAPI = Proxy
 
-server :: Server UserAPI
+-- server :: Server UserAPI
+server :: App [User]
 server = return getUsers
 
 type UserRepo = TVar (HashMap Text User)

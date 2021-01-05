@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7ddb941a16a1f6c2b62a8d23b8de1196a238a0fd697a7d23abd926810023ff52
+-- hash: d62db784fb183bc9814ee6ea0bc4bdde6cbbd6bc8496ea5fc925459f8b61ab77
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -27,6 +27,8 @@ source-repository head
 
 library
   exposed-modules:
+      Chakra
+      Config
       Domain.API.User
       Domain.Types
       Import
@@ -50,9 +52,9 @@ library
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
-    , servant
-    , servant-server
+    , servant-server >=0.18.2
     , text >=1.2.3.1
+    , transformers >=0.5.6.2
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
     , wai-cli
@@ -80,9 +82,9 @@ executable ApiTemplate-exe
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
-    , servant
-    , servant-server
+    , servant-server >=0.18.2
     , text >=1.2.3.1
+    , transformers >=0.5.6.2
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
     , wai-cli
@@ -112,9 +114,9 @@ test-suite ApiTemplate-test
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
-    , servant
-    , servant-server
+    , servant-server >=0.18.2
     , text >=1.2.3.1
+    , transformers >=0.5.6.2
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
     , wai-cli

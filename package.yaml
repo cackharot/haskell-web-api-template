@@ -18,6 +18,7 @@ dependencies:
 - text >= 1.2.3.1
 - bytestring >= 0.10.8.2 
 - unordered-containers >= 0.2.10.0
+- transformers >= 0.5.6.2
 - dotenv >= 0.8.0.4
 - envy >= 2.0.0.0
 - aeson >= 1.4.6.0
@@ -29,8 +30,7 @@ dependencies:
 - prometheus-client >= 1.0.0
 - wai-middleware-prometheus >= 1.0.0
 - prometheus-metrics-ghc >= 1.0.1.1
-- servant
-- servant-server
+- servant-server >= 0.18.2
 
 ghc-options:
 - -Wall

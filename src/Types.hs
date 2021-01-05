@@ -5,16 +5,18 @@ module Types where
 import qualified Data.Aeson  as A
 import           RIO
 import           RIO.Process
+import System.Envy
 
-data App = App
+data AppConf = AppConf
   { appLogFunc        :: !LogFunc
   , appProcessContext :: !ProcessContext
   , appInfoDetail     :: !InfoDetail
   }
 
-instance HasLogFunc App where
+instance HasLogFunc AppConf where
   logFuncL = lens appLogFunc (\x y -> x { appLogFunc = y })
-instance HasProcessContext App where
+
+instance HasProcessContext AppConf where
   processContextL = lens appProcessContext (\x y -> x { appProcessContext = y })
 
 data InfoDetail = InfoDetail
@@ -25,7 +27,11 @@ data InfoDetail = InfoDetail
   }
   deriving (Show,Eq,Generic)
 
+instance FromEnv InfoDetail
 instance A.ToJSON InfoDetail where
   toJSON =
     A.genericToJSON
       A.defaultOptions {A.fieldLabelModifier = A.camelTo2 '_' . drop 3}
+
+type AppCtx = (LogFunc, InfoDetail)
+type App = RIO AppCtx
