@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d62db784fb183bc9814ee6ea0bc4bdde6cbbd6bc8496ea5fc925459f8b61ab77
+-- hash: f570000727c577f623b315359f31a4723d11b096a7b81b0eb32121866f717b75
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -46,6 +46,7 @@ library
       aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , data-default >=0.7.1.1
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
     , http-types >=0.12.3
@@ -75,6 +76,7 @@ executable ApiTemplate-exe
     , aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , data-default >=0.7.1.1
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
     , http-types >=0.12.3
@@ -107,6 +109,7 @@ test-suite ApiTemplate-test
     , aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , data-default >=0.7.1.1
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
     , hspec

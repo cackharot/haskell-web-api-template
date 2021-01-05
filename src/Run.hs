@@ -8,8 +8,6 @@ import           Chakra
 import qualified Domain.API.User    as U
 import           Import
 
-import           System.Environment (lookupEnv)
-
 type API = U.UserAPI :<|> EmptyAPI
 
 appAPI:: Proxy API
@@ -17,17 +15,17 @@ appAPI = Proxy
 
 appServer =  U.server :<|> emptyServer
 
-appMiddlewares :: ToJSON a => Bool -> a -> Application -> Application
-appMiddlewares e d = chakraMiddlewares e d
+appMiddlewares :: ToJSON a => a -> IO (Application -> Application)
+appMiddlewares d = chakraMiddlewares d
 
 runApi :: RIO AppConf ()
 runApi = do
   hSetBuffering stdin LineBuffering
   appConfig <- ask
   userRepo <- liftIO $ U.newRepo
-  isProdEnv <-
-    liftIO $ do maybe False (== "PRODUCTION") <$> lookupEnv "APP_ENVIRONMENT"
-  let app' = appMiddlewares isProdEnv appInfoD
-      appInfoD = (appInfoDetail appConfig)
-      ctx  = (appLogFunc appConfig, appInfoD)
-    in runChakraAppWithMetrics app' ctx appAPI appServer
+  middlewares <- liftIO $ appMiddlewares (appInfoDetail appConfig)
+  runChakraAppWithMetrics
+    middlewares
+    (appLogFunc appConfig, (appInfoDetail appConfig))
+    appAPI
+    appServer
