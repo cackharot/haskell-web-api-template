@@ -16,6 +16,7 @@ module Chakra (
 import           Control.Monad.Trans.Except           (ExceptT (..))
 import           Data.Aeson                           as X
 import           Data.Proxy                           as X
+import           Network.Wai.Cli
 import           Network.Wai.Middleware.Health        (health)
 import           Network.Wai.Middleware.Info          (info)
 import qualified Network.Wai.Middleware.Prometheus    as P
@@ -42,6 +43,28 @@ chakraApp ::
   -> Application
 chakraApp api sctx ctx actions = serveWithContext api sctx $ srv ctx
   where srv c = hoistServerWithContext api (Proxy @ψ) (runChakraHandler c) actions
+
+runChakraApp ::
+     (MonadIO m, HasServer χ '[])
+  => (Application -> Application)
+  -> β
+  -> Proxy χ
+  -> ServerT χ (RIO β)
+  -> m ()
+runChakraApp middlewares ctx api apiHandlers =
+  liftIO $
+  defWaiMain $ middlewares $ chakraApp api EmptyContext ctx $ apiHandlers
+
+runChakraAppWithMetrics ::
+     (MonadIO m, HasServer χ '[])
+  => (Application -> Application)
+  -> β
+  -> Proxy χ
+  -> ServerT χ (RIO β)
+  -> m ()
+runChakraAppWithMetrics middlewares ctx api apiHandlers = do
+  _ <- registerMetrics
+  runChakraApp middlewares ctx api apiHandlers
 
 chakraMiddlewares :: ToJSON a => Bool -> a -> Application -> Application
 chakraMiddlewares isProdEnv infoDetail = logType . P.prometheus P.def . health . info jsonInfoDetail

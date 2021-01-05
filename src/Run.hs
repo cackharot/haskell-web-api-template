@@ -8,7 +8,6 @@ import           Chakra
 import qualified Domain.API.User    as U
 import           Import
 
-import           Network.Wai.Cli
 import           System.Environment (lookupEnv)
 
 type API = U.UserAPI :<|> EmptyAPI
@@ -26,10 +25,9 @@ runApi = do
   hSetBuffering stdin LineBuffering
   appConfig <- ask
   userRepo <- liftIO $ U.newRepo
-  _ <- registerMetrics
   isProdEnv <-
     liftIO $ do maybe False (== "PRODUCTION") <$> lookupEnv "APP_ENVIRONMENT"
   let app' = appMiddlewares isProdEnv appInfoD
       appInfoD = (appInfoDetail appConfig)
       ctx  = (appLogFunc appConfig, appInfoD)
-    in liftIO $ defWaiMain $ app' $ chakraApp appAPI EmptyContext ctx $ appServer
+    in runChakraAppWithMetrics app' ctx appAPI appServer
