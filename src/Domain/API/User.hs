@@ -18,7 +18,7 @@ userAPI = Proxy
 
 -- server :: Server UserAPI
 server :: App [User]
-server = return getUsers
+server = getUsers
 
 type UserRepo = TVar (HashMap Text User)
 
@@ -30,5 +30,8 @@ newRepo = atomically (newTVar users)
 defaultUsers :: [(Text, User)]
 defaultUsers = [("1234", User (Name "name1") (Email "email@test.com"))]
 
-getUsers :: [User]
-getUsers = [User (Name "name1") (Email "email@test.com")]
+getUsers :: App [User]
+getUsers = do
+  logWarn "Fetching users from db"
+  logInfoS "some inner func" "Fetching users from db"
+  return $ [User (Name "name1") (Email "email@test.com")]

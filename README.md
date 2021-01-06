@@ -7,7 +7,7 @@ This serves as a base to create API projects that comes with the following featu
 - Light weight & super fast Warp http server
 - Supports HTTP 1.1 & HTTP/2 TLS
 - JSON as input/output serialization using Aeson library
-- Fastlogger
+- JSON logging
 - Define the REST interface using Servant library
 - JWT (Bearer) token based authentication
 - Application config via ENVIRONMENT variables (via dotenv & envy)
@@ -18,12 +18,13 @@ This serves as a base to create API projects that comes with the following featu
 
 [x] Integrate with RIO
 [x] Integrate with Servant
-[] Integrate with FastLogger
+[x] Integrate with FastLogger
 [x] Integrate with doenv & envy
 [x] Integrate with Prometheus
 [x] Integrate with wai-util
 [] Setup JWT Authentication
 [] Setup Stack template
+[] Setup HTTPS
 
 ## Getting started
 

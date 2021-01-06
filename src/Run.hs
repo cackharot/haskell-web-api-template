@@ -22,10 +22,11 @@ runApi :: RIO AppConf ()
 runApi = do
   hSetBuffering stdin LineBuffering
   appConfig <- ask
+  let lf = view logFuncL appConfig
   userRepo <- liftIO $ U.newRepo
   middlewares <- liftIO $ appMiddlewares (appInfoDetail appConfig)
   runChakraAppWithMetrics
     middlewares
-    (appLogFunc appConfig, (appInfoDetail appConfig))
+    (lf, (appInfoDetail appConfig))
     appAPI
     appServer

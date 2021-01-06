@@ -3,9 +3,10 @@
 module Types where
 
 import qualified Data.Aeson  as A
+import           Logging
 import           RIO
 import           RIO.Process
-import System.Envy
+import           System.Envy
 
 data AppConf = AppConf
   { appLogFunc        :: !LogFunc
@@ -33,5 +34,5 @@ instance A.ToJSON InfoDetail where
     A.genericToJSON
       A.defaultOptions {A.fieldLabelModifier = A.camelTo2 '_' . drop 3}
 
-type AppCtx = (LogFunc, InfoDetail)
+type AppCtx = (ModLogger, InfoDetail)
 type App = RIO AppCtx

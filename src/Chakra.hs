@@ -17,6 +17,7 @@ import           Control.Monad.Trans.Except                (ExceptT (..))
 import           Data.Aeson                                as X
 import           Data.Default
 import           Data.Proxy                                as X
+import           Logging                                   as X
 import           Network.Wai                               (Middleware)
 import           Network.Wai.Cli
 import           Network.Wai.Middleware.Health             (health)

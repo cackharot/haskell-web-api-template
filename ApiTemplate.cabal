@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f570000727c577f623b315359f31a4723d11b096a7b81b0eb32121866f717b75
+-- hash: f5120e6b49d0557aed5b6875616627040f409e1a39ff166c517b578d3a4453c3
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -32,6 +32,7 @@ library
       Domain.API.User
       Domain.Types
       Import
+      Logging
       Network.Wai.Middleware.Health
       Network.Wai.Middleware.Info
       Run
@@ -47,14 +48,18 @@ library
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
     , data-default >=0.7.1.1
+    , data-has
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
+    , fast-logger >=2.4.17
     , http-types >=0.12.3
+    , mtl >=2.2.2
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
     , servant-server >=0.18.2
     , text >=1.2.3.1
+    , time
     , transformers >=0.5.6.2
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
@@ -77,15 +82,19 @@ executable ApiTemplate-exe
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
     , data-default >=0.7.1.1
+    , data-has
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
+    , fast-logger >=2.4.17
     , http-types >=0.12.3
+    , mtl >=2.2.2
     , optparse-simple
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
     , servant-server >=0.18.2
     , text >=1.2.3.1
+    , time
     , transformers >=0.5.6.2
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1
@@ -110,15 +119,19 @@ test-suite ApiTemplate-test
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
     , data-default >=0.7.1.1
+    , data-has
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
+    , fast-logger >=2.4.17
     , hspec
     , http-types >=0.12.3
+    , mtl >=2.2.2
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
     , servant-server >=0.18.2
     , text >=1.2.3.1
+    , time
     , transformers >=0.5.6.2
     , unordered-containers >=0.2.10.0
     , wai >=3.2.2.1

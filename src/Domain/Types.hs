@@ -16,10 +16,10 @@ newtype Email =
 
 data User =
   User
-    { _name  :: !Name
+    { _name :: !Name
     , _email :: !Email
     }
-  deriving (Eq,Show,Generic)
+  deriving (Eq, Show, Generic)
 
 instance ToJSON Name
 instance ToJSON Email
