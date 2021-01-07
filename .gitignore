@@ -51,6 +51,12 @@ obj/
 *.tmp
 tmp/
 .#*
+*.pem
+*.key
+*.crt
+*.cer
+*.csr
+*.srl
 
 TAGS
 

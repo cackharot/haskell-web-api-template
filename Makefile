@@ -1,6 +1,9 @@
 STACK=stack
 CWD=$(shell pwd)
 BIN=$(CWD)/bin
+APP_NAME=ApiTemplate-exe
+PORT?=3000
+HTTPS_PORT?=3443
 OPTS=+RTS -N2 -RTS
 
 help: ## Print documentation
@@ -13,7 +16,10 @@ test: ## Runs the test suite
 	$(STACK) test
 
 runp: ## Runs the program binary directly
-	APP_ENVIRONMENT=PRODUCTION $(BIN)/ApiTemplate-exe $(OPTS)
+	$(BIN)/$(APP_NAME) $(OPTS) --port $(PORT)
+
+runhttps: ## Runs server on HTTPS
+	$(BIN)/$(APP_NAME) $(OPTS) --port $(HTTPS_PORT) --protocol http+tls  --tlskey certs/localhost.key --tlscert certs/localhost.crt
 
 run: ## Runs the program via stack & complies if necessary
 	$(STACK) run

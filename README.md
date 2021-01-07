@@ -16,15 +16,15 @@ This serves as a base to create API projects that comes with the following featu
 
 ## TODO
 
-[x] Integrate with RIO
-[x] Integrate with Servant
-[x] Integrate with FastLogger
-[x] Integrate with doenv & envy
-[x] Integrate with Prometheus
-[x] Integrate with wai-util
-[] Setup JWT Authentication
-[] Setup Stack template
-[] Setup HTTPS
+- [x] Integrate with RIO
+- [x] Integrate with Servant
+- [x] Integrate with FastLogger
+- [x] Integrate with doenv & envy
+- [x] Integrate with Prometheus
+- [x] Integrate with wai-util
+- [] Setup JWT Authentication
+- [] Setup Stack template
+- [x] Setup HTTPS
 
 ## Getting started
 
@@ -63,4 +63,29 @@ DELETE http://localhost:3000/samples/123 # Delete sample by id
 
 ```bash
 make test
+```
+
+## HTTPS Setup
+
+Generate RootCA & localhost Public & Private key pair
+
+Be sure to edit `certs/domains.ext` file if you need more DNS aliases before executing these commands.
+
+```bash
+openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout "certs/RootCA.key" -out "certs/RootCA.pem" -subj "/C=US/CN=Localhost-Root-CA"
+openssl x509 -outform pem -in "certs/RootCA.pem" -out "certs/RootCA.crt"
+
+openssl req -new -nodes -newkey rsa:2048 -keyout "certs/localhost.key" -out "certs/localhost.csr" -subj "/C=US/ST=NoWhere/L=NoWhere/O=Localhost-Certificates/CN=localhost.local"
+openssl x509 -req -sha256 -days 1024 -in "certs/localhost.csr" -CA "certs/RootCA.pem" -CAkey "certs/RootCA.key" -CAcreateserial -extfile "certs/domains.ext" -out "certs/localhost.crt"
+```
+
+Once you have these keys then to start the server in https run the below command:
+
+```bash
+make run-https
+
+# or
+/path/to/urapiexec --port 3443 --protocol http+tls --tlskey certs/localhost.key --tlscert certs/localhost.crt
+
+open https://localhost:3443/health
 ```
