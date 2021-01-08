@@ -10,15 +10,16 @@ import           Import
 import           Domain.Types
 import           Servant
 import qualified Data.HashMap.Strict as B
+import Servant.Auth.Server as SAS
 
 type UserAPI = "users" :> Get '[JSON] [User]
 
 userAPI :: Proxy UserAPI
 userAPI = Proxy
 
--- server :: Server UserAPI
-server :: App [User]
-server = getUsers
+server :: AuthResult val -> App [User]
+server (SAS.Authenticated user) = getUsers
+server _ = throwUnauthorized
 
 type UserRepo = TVar (HashMap Text User)
 

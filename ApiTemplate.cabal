@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f5120e6b49d0557aed5b6875616627040f409e1a39ff166c517b578d3a4453c3
+-- hash: a6e6d322c500acc0abdc4c1e7449b8fa990254422a753a580bcdba4195727e78
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -19,7 +19,6 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
-    ChangeLog.md
 
 source-repository head
   type: git
@@ -32,9 +31,11 @@ library
       Domain.API.User
       Domain.Types
       Import
+      JWT
       Logging
       Network.Wai.Middleware.Health
       Network.Wai.Middleware.Info
+      RequestLogging
       Run
       Types
       Util
@@ -47,16 +48,22 @@ library
       aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , cryptonite
     , data-default >=0.7.1.1
     , data-has
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
     , fast-logger >=2.4.17
     , http-types >=0.12.3
+    , iproute
+    , jose
     , mtl >=2.2.2
+    , network
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
+    , servant-auth
+    , servant-auth-server
     , servant-server >=0.18.2
     , text >=1.2.3.1
     , time
@@ -81,17 +88,23 @@ executable ApiTemplate-exe
     , aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , cryptonite
     , data-default >=0.7.1.1
     , data-has
     , dotenv >=0.8.0.4
     , envy >=2.0.0.0
     , fast-logger >=2.4.17
     , http-types >=0.12.3
+    , iproute
+    , jose
     , mtl >=2.2.2
+    , network
     , optparse-simple
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
+    , servant-auth
+    , servant-auth-server
     , servant-server >=0.18.2
     , text >=1.2.3.1
     , time
@@ -118,6 +131,7 @@ test-suite ApiTemplate-test
     , aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , cryptonite
     , data-default >=0.7.1.1
     , data-has
     , dotenv >=0.8.0.4
@@ -125,10 +139,15 @@ test-suite ApiTemplate-test
     , fast-logger >=2.4.17
     , hspec
     , http-types >=0.12.3
+    , iproute
+    , jose
     , mtl >=2.2.2
+    , network
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
+    , servant-auth
+    , servant-auth-server
     , servant-server >=0.18.2
     , text >=1.2.3.1
     , time

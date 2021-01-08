@@ -1,11 +1,20 @@
 {-# LANGUAGE NoImplicitPrelude #-}
--- | Silly utility module, used to demonstrate how to write a test
--- case.
+{-# LANGUAGE OverloadedStrings #-}
 module Util
-  ( plus2
-  ) where
+where
 
-import RIO
+import qualified Data.ByteString.Lazy as L (ByteString)
+import           Network.HTTP.Types   (hContentType)
+import           RIO
+import           Servant
 
-plus2 :: Int -> Int
-plus2 = (+ 2)
+errText :: ServerError -> L.ByteString -> ServerError
+errText e t = e { errHeaders = [ (hContentType, "text/plain; charset=utf-8") ]
+                , errBody    = t }
+
+-- | Creates and throws a simple text/plain ServerError.
+throwErrText :: MonadThrow u => ServerError -> L.ByteString -> u a
+throwErrText e t = throwM $ errText e t
+
+throwUnauthorized :: MonadThrow u => u a
+throwUnauthorized = throwM $ errText err401 "Unauthorized access!"

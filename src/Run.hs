@@ -1,32 +1,43 @@
-{-# LANGUAGE DataKinds         #-}
-{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeOperators     #-}
+{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE NoImplicitPrelude #-}
+
 module Run (runApi) where
 
-import           Chakra
-import qualified Domain.API.User    as U
-import           Import
+import Chakra
+import qualified Domain.API.User as U
+import Import
+import JWT (acquireJwks, getJWTSettings)
+import Servant.Auth as SA (JWT)
+import Servant.Auth.Server as SAS
 
-type API = U.UserAPI :<|> EmptyAPI
+type API auths = (SAS.Auth auths AuthenticatedUser :> U.UserAPI) :<|> EmptyAPI
 
-appAPI:: Proxy API
+appAPI :: Proxy (API '[SA.JWT])
 appAPI = Proxy
 
-appServer =  U.server :<|> emptyServer
+appServer = U.server :<|> emptyServer
 
-appMiddlewares :: ToJSON a => a -> IO (Application -> Application)
-appMiddlewares d = chakraMiddlewares d
+appMiddlewares :: InfoDetail -> IO Middleware
+appMiddlewares = chakraMiddlewares
 
 runApi :: RIO AppConf ()
 runApi = do
   hSetBuffering stdin LineBuffering
   appConfig <- ask
-  let lf = view logFuncL appConfig
-  userRepo <- liftIO $ U.newRepo
+  userRepo <- liftIO U.newRepo
   middlewares <- liftIO $ appMiddlewares (appInfoDetail appConfig)
+  jwkSet <- liftIO acquireJwks
+  myKey <- liftIO generateKey
+  let lf = view logFuncL appConfig
+      jwtCfg = getJWTSettings myKey jwkSet
+      cookieCfg = defaultCookieSettings {cookieIsSecure = SAS.NotSecure}
+      sctx = cookieCfg :. jwtCfg :. EmptyContext
   runChakraAppWithMetrics
     middlewares
-    (lf, (appInfoDetail appConfig))
+    sctx
+    (lf, appInfoDetail appConfig)
     appAPI
     appServer
