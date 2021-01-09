@@ -15,6 +15,9 @@ build: ## Build the project and generate executable
 test: ## Runs the test suite
 	$(STACK) test
 
+run-watch: ## Build & Runs the program watching for file changes
+	$(STACK) build --fast --file-watch --exec "$(CWD)/scripts/killRun.sh"
+
 runp: ## Runs the program binary directly
 	$(BIN)/$(APP_NAME) $(OPTS) --port $(PORT)
 
