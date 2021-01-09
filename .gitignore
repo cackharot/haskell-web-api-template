@@ -61,3 +61,5 @@ tmp/
 TAGS
 
 # End of https://www.gitignore.io/api/visualstudiocode,osx
+
+*jwt.sh

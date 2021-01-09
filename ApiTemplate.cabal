@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a6e6d322c500acc0abdc4c1e7449b8fa990254422a753a580bcdba4195727e78
+-- hash: 0ac04cf71bd2356ae821a45a22d21dfb3cf4eaac85ed78bf627ae62b68274a0f
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -65,6 +65,7 @@ library
     , servant-auth
     , servant-auth-server
     , servant-server >=0.18.2
+    , string-conversions
     , text >=1.2.3.1
     , time
     , transformers >=0.5.6.2
@@ -106,6 +107,7 @@ executable ApiTemplate-exe
     , servant-auth
     , servant-auth-server
     , servant-server >=0.18.2
+    , string-conversions
     , text >=1.2.3.1
     , time
     , transformers >=0.5.6.2
@@ -149,6 +151,7 @@ test-suite ApiTemplate-test
     , servant-auth
     , servant-auth-server
     , servant-server >=0.18.2
+    , string-conversions
     , text >=1.2.3.1
     , time
     , transformers >=0.5.6.2

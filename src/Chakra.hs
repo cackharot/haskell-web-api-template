@@ -30,6 +30,7 @@ import           RIO
 import           Servant                           as X hiding (And, Handler)
 import qualified Servant
 import qualified Types                             as T (InfoDetail (..))
+import           Util
 
 runChakraHandler :: a -> RIO a h -> Servant.Handler h
 runChakraHandler ctx a = Servant.Handler $ ExceptT $ try $ runReaderT (unRIO a) ctx
@@ -89,3 +90,10 @@ chakraMiddlewares infoDetail = do
 
 registerMetrics :: MonadIO m => m P.GHCMetrics
 registerMetrics = P.register P.ghcMetrics
+
+customErrorFormatters :: ErrorFormatters
+customErrorFormatters =
+  defaultErrorFormatters
+    { bodyParserErrorFormatter = jsonErrorFormatter
+    , notFoundErrorFormatter = notFoundFormatter
+    }

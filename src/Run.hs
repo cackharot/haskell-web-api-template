@@ -34,7 +34,7 @@ runApi = do
   let lf = view logFuncL appConfig
       jwtCfg = getJWTSettings myKey jwkSet
       cookieCfg = defaultCookieSettings {cookieIsSecure = SAS.NotSecure}
-      sctx = cookieCfg :. jwtCfg :. EmptyContext
+      sctx = cookieCfg :. jwtCfg :. customErrorFormatters :. EmptyContext
   runChakraAppWithMetrics
     middlewares
     sctx

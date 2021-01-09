@@ -23,6 +23,8 @@ This serves as a base to create API projects that comes with the following featu
 - [x] Integrate with Prometheus
 - [x] Integrate with wai-util
 - [x] Setup JWT Authentication
+- [x] JSON Error formatting
+- [ ] Setup PSQL/SqlLite pool with Presistent
 - [ ] Setup Stack template
 - [x] Setup HTTPS
 
