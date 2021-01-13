@@ -91,3 +91,16 @@ make run-https
 ```
 
 open https://localhost:3443/health
+
+## JWT Authentication
+
+This template supports only authentication against standard JWT issued by Azure, Okta, Keybase & other OAuth JWT authentication providers.
+However its easily customizable to authenticate against custom issued JWT token. This template does not issue a JWT token.
+
+The validate any incoming JWT's we need the public keys (provider by JWT issuer) to verify the payload and also need to verify the audiences. 
+These are configurable via ENV variables
+
+```bash
+JWK_PATH="secrets/jwk.sig"
+JWK_AUDIENCES="api://some-resource-id"
+```

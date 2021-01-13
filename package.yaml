@@ -19,6 +19,8 @@ dependencies:
 - mtl >= 2.2.2
 - data-default >= 0.7.1.1
 - data-has
+- lens
+- network-uri
 - bytestring >= 0.10.8.2 
 - string-conversions
 - cryptonite

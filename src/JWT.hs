@@ -1,16 +1,23 @@
 {-# LANGUAGE NoImplicitPrelude   #-}
 {-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-module JWT
-where
 
-import           Control.Monad.Except
-import           Crypto.JOSE
+module JWT where
+
+import           Control.Lens         (preview)
+import           Control.Monad.Except (Monad (return))
+import           Crypto.JOSE          (JWK, JWKSet (..))
+import           Crypto.JWT           (StringOrURI, string, uri)
 import qualified Data.Aeson           as Aeson
 import           Data.ByteString      (readFile)
-import           RIO
-import           Servant.Auth.Server
-import           System.Environment
+import qualified Data.Text            as T
+import           Network.URI          (parseURI)
+import           RIO                  (Eq ((==)), IO, Maybe (Just, Nothing),
+                                       Semigroup ((<>)), const, either, error,
+                                       fromMaybe, id, maybe, ($), (++))
+import           Servant.Auth.Server  (IsMatch (..), JWTSettings (..),
+                                       generateKey)
+import           System.Environment   (lookupEnv)
 
 acquireJwks :: IO JWKSet
 acquireJwks = do
@@ -20,13 +27,28 @@ acquireJwks = do
   let parsed = Aeson.eitherDecodeStrict fileContent
   return $ either (\e -> error $ "Invalid JWK file: " <> e) id parsed
 
-getJWTSettings :: JWK -> JWKSet -> JWTSettings
-getJWTSettings sigKey jwkSet =
+getJWTAuthSettings :: IO JWTSettings
+getJWTAuthSettings = do
+  jwkSet <- acquireJwks
+  signKey <- generateKey
+  audienceCfg <- lookupEnv "JWK_AUDIENCES"
+  let audMatches = maybe (const Matches) checkAud audienceCfg
+      checkAud audConfig = \tokenAud ->
+        if preview uri tokenAud == parseURI audConfig then
+          Matches
+        else if preview string tokenAud == Just (T.pack audConfig) then
+          Matches
+        else
+          DoesNotMatch
+  return $ buildJWTSettings signKey jwkSet audMatches
+
+buildJWTSettings :: JWK -> JWKSet -> (StringOrURI -> IsMatch) -> JWTSettings
+buildJWTSettings signKey jwkSet audMatches =
   JWTSettings
-    { signingKey = sigKey
-    , jwtAlg = Nothing
-    , validationKeys = vkeys sigKey jwkSet
-    , audienceMatches = const Matches
+    { signingKey = signKey,
+      jwtAlg = Nothing,
+      validationKeys = vkeys signKey jwkSet,
+      audienceMatches = audMatches
     }
   where
     vkeys k (JWKSet x) = JWKSet (x ++ [k])

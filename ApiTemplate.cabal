@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0ac04cf71bd2356ae821a45a22d21dfb3cf4eaac85ed78bf627ae62b68274a0f
+-- hash: 73b8d7214472a92c85b33d454f3055086b8a0711a5e0b048e18d98a97227c58e
 
 name:           ApiTemplate
 version:        0.1.0.0
@@ -57,8 +57,10 @@ library
     , http-types >=0.12.3
     , iproute
     , jose
+    , lens
     , mtl >=2.2.2
     , network
+    , network-uri
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
@@ -98,8 +100,10 @@ executable ApiTemplate-exe
     , http-types >=0.12.3
     , iproute
     , jose
+    , lens
     , mtl >=2.2.2
     , network
+    , network-uri
     , optparse-simple
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
@@ -143,8 +147,10 @@ test-suite ApiTemplate-test
     , http-types >=0.12.3
     , iproute
     , jose
+    , lens
     , mtl >=2.2.2
     , network
+    , network-uri
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
