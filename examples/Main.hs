@@ -6,11 +6,13 @@
 
 module Main (main) where
 
+import RIO
 import Chakra
+import Servant
 import Configuration.Dotenv (defaultConfig, loadFile)
 import qualified Data.Text as T
 import Options.Applicative.Simple
-import qualified Paths_ApiTemplate
+import qualified Paths_chakra
 import Servant.Auth.Server as SAS
 import qualified User as U
 
@@ -26,7 +28,7 @@ main = do
   -- Load the AppSettings data from ENV variables
   withAppSettingsFromEnv $ \appSettings -> do
     -- Override the version from cabal file
-    let ver = $(simpleVersion Paths_ApiTemplate.version) -- TH to get cabal project's git sha version
+    let ver = $(simpleVersion Paths_chakra.version) -- TH to get cabal project's git sha version
         infoDetail = appSettings {appVersion = T.pack ver}
     logFunc <- buildLogger (appEnvironment infoDetail) (appVersion infoDetail)
     userRepo <- U.newInMemRepo

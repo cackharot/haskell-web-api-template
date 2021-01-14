@@ -1,9 +1,15 @@
+-- |Config utility module, uses System.Envy to read ENV values and builds a data
 module Chakra.Config where
 
 import qualified System.Envy as Envy
 import System.IO (hPutStrLn, stderr)
 
--- Read from ENVIRONMENT Variables
+-- | Read from ENVIRONMENT Variables and return your target `t` data
+-- `t` should have a instance of FromEnv
+-- Example: 
+-- @ 
+--    instance FromEnv MyAppSettings
+-- @
 withAppSettingsFromEnv :: Envy.FromEnv t => (t -> IO ()) -> IO ()
 withAppSettingsFromEnv f = Envy.decodeEnv >>= callF
   where

@@ -4,13 +4,20 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e960150b74649744f4a4ec27b22be8db8989ef9e509bfd2b062f236d42f436af
+-- hash: 671a9131577370be518a25858a813c35254c2497c4b808afc6e3eef1161ef4c8
 
-name:           Chakra
+name:           chakra
 version:        0.1.0
-synopsis:       A REST Web Api server template in Haskell, that serves as a reference  and avoids repetive boilerplate when building many (micro)services. This combines best libraries available in Haskell web development, like RIO, warp, servant, etc., and principles around 12-factor app.
+synopsis:       A REST Web Api server template in Haskell for building (micro)services.
 
-description:    Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
+description:    A REST Web Api server template in Haskell, that serves as a reference
+                and avoids repetive boilerplate when building many (micro)services.
+                This combines best libraries available in Haskell web development, like RIO, warp, servant, etc.,
+                and principles around 12-factor app.
+                .
+                Check @'Chakra'@ module documentation for example.
+                .
+                For more details, please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
 category:       Web
 homepage:       https://github.com/cackharot/haskell-web-api-template#readme
 bug-reports:    https://github.com/cackharot/haskell-web-api-template/issues
@@ -41,7 +48,7 @@ library
       Network.Wai.Middleware.Info
   other-modules:
       Chakra.RequestLogging
-      Paths_Chakra
+      Paths_chakra
   hs-source-dirs:
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
@@ -65,8 +72,8 @@ library
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
-    , servant-auth
-    , servant-auth-server
+    , servant-auth >=0.3.2.0
+    , servant-auth-server >=0.4.5.1
     , servant-server >=0.18.2
     , string-conversions
     , text >=1.2.3.1
@@ -80,20 +87,65 @@ library
     , warp >=3.3.5
   default-language: Haskell2010
 
-test-suite Chakra-test
+executable chakra-exe
+  main-is: Main.hs
+  other-modules:
+      User
+      Paths_chakra
+  hs-source-dirs:
+      examples
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
+  build-depends:
+      aeson >=1.4.6.0
+    , base >=4.11 && <10
+    , bytestring >=0.10.8.2
+    , chakra
+    , cryptonite
+    , data-default >=0.7.1.1
+    , data-has
+    , dotenv >=0.8.0.4
+    , envy >=2.0.0.0
+    , fast-logger >=2.4.17
+    , http-types >=0.12.3
+    , iproute
+    , jose
+    , lens
+    , mtl >=2.2.2
+    , network
+    , network-uri
+    , optparse-simple
+    , prometheus-client >=1.0.0
+    , prometheus-metrics-ghc >=1.0.1.1
+    , rio >=0.1.14.0
+    , servant-auth >=0.3.2.0
+    , servant-auth-server >=0.4.5.1
+    , servant-server >=0.18.2
+    , string-conversions
+    , text >=1.2.3.1
+    , time
+    , transformers >=0.5.6.2
+    , unordered-containers >=0.2.10.0
+    , wai >=3.2.2.1
+    , wai-cli
+    , wai-extra
+    , wai-middleware-prometheus >=1.0.0
+    , warp >=3.3.5
+  default-language: Haskell2010
+
+test-suite chakra-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
       UtilSpec
-      Paths_Chakra
+      Paths_chakra
   hs-source-dirs:
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      Chakra
-    , aeson >=1.4.6.0
+      aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
+    , chakra
     , cryptonite
     , data-default >=0.7.1.1
     , data-has
@@ -111,8 +163,8 @@ test-suite Chakra-test
     , prometheus-client >=1.0.0
     , prometheus-metrics-ghc >=1.0.1.1
     , rio >=0.1.14.0
-    , servant-auth
-    , servant-auth-server
+    , servant-auth >=0.3.2.0
+    , servant-auth-server >=0.4.5.1
     , servant-server >=0.18.2
     , string-conversions
     , text >=1.2.3.1

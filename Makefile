@@ -12,6 +12,9 @@ help: ## Print documentation
 build: ## Build the project and generate executable
 	$(STACK) build --local-bin-path $(BIN) --copy-bins
 
+doc: ## Build the project and generate executable
+	$(STACK) haddock && open .stack-work/dist/x86_64-osx/Cabal-2.4.0.1/doc/html/Chakra/index.html
+
 test: ## Runs the test suite
 	$(STACK) test
 

@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |Contains functions to log WAI request in JSON format
 module Chakra.RequestLogging 
   (jsonRequestLogger) 
 where

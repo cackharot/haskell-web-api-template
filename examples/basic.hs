@@ -1,9 +1,11 @@
 #!/usr/bin/env stack
 {- stack --resolver lts-14.27 runghc
- --package ApiTemplate
+ --package chakra
 -}
 {-# LANGUAGE NoImplicitPrelude, OverloadedStrings, UnicodeSyntax, DataKinds, TypeOperators #-}
+import RIO
 import Chakra
+import Servant
 
 type HelloRoute = "hello" :> QueryParam "name" Text :> Get '[PlainText] Text
 type API = HelloRoute :<|> EmptyAPI

@@ -7,12 +7,13 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module User (UserAppCtx (..), server, UserAPI, userAPI, newInMemRepo) where
+module User (UserAppCtx, server, UserAPI, userAPI, newInMemRepo) where
 
+import RIO
 import Chakra
 import Data.Aeson
+import Data.Has
 import qualified Data.HashMap.Strict as B
-import Data.Text
 import Servant
 import Servant.Auth.Server as SAS
 

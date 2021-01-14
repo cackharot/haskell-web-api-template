@@ -3,6 +3,8 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE UnicodeSyntax        #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
+
+-- |As name suggests few utilities to make life easier
 module Chakra.Util
 where
 
@@ -16,6 +18,7 @@ import           Network.Wai
 import           RIO
 import           Servant
 
+-- | Construct plain ServerError Type with given status code and error text
 errText :: ServerError -> L.ByteString -> ServerError
 errText e t =
   e {errHeaders = [(hContentType, "text/plain; charset=utf-8")], errBody = t}
@@ -24,13 +27,16 @@ errText e t =
 throwErrText :: MonadThrow u => ServerError -> L.ByteString -> u a
 throwErrText e t = throwM $ errText e t
 
+-- | Throws Unauthorized error
 throwUnauthorized :: MonadThrow u => u a
 throwUnauthorized = throwM $ errText err401 "Unauthorized access!"
 
+-- | Custom JSON payload error formatter
 jsonErrorFormatter :: ErrorFormatter
 jsonErrorFormatter _tr _req err =
   err400 {errBody = encode err, errHeaders = [("Content-Type", "application/json; charset=utf-8")]}
 
+-- | Custom JSON payload error formatter for 404
 notFoundFormatter :: NotFoundErrorFormatter
 notFoundFormatter req =
   err404

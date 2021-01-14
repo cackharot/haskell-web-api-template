@@ -7,6 +7,7 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
+-- |Logging utility functions
 module Chakra.Logging
   ( LogMessage,
     ModLogger,
@@ -61,6 +62,7 @@ newLogger logtype formatter = do
   -- todo clean up
   return (fl, mkLogFunc $ formatter fl)
 
+-- | Builds LogMessage and json encodes to string
 jsonFormatter :: Text -> Text -> Formatter
 jsonFormatter envName appVer logger cs src logLvl msg = logger buildJsonLogMsg
   where

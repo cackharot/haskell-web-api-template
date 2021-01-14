@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
+-- |Contains JWT authentication settings
 module Chakra.JWT where
 
 import           Control.Lens         (preview)
@@ -19,7 +20,9 @@ import           Servant.Auth.Server  (IsMatch (..), JWTSettings (..),
                                        generateKey)
 import           System.Environment   (lookupEnv)
 
-
+-- |Build JWT settings to be used in Servant Auth context
+-- Looks for `JWK_AUDIENCES` and `JWK_PATH` in environment values
+-- to load the sig file and value to verify the incoming jwt audience claim
 getJWTAuthSettings :: IO JWTSettings
 getJWTAuthSettings = do
   jwkSet <- acquireJwks
@@ -45,6 +48,7 @@ buildJWTSettings signKey jwkSet audMatches =
     }
   where
     vkeys k (JWKSet x) = JWKSet (x ++ [k])
+
 acquireJwks :: IO JWKSet
 acquireJwks = do
   envUrl <- lookupEnv "JWK_PATH"

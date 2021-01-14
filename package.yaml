@@ -1,12 +1,16 @@
-name:                Chakra
+name:                chakra
 version:             0.1.0
 synopsis: >
-  A REST Web Api server template in Haskell, that serves as a reference 
+  A REST Web Api server template in Haskell for building (micro)services.
+description: |
+  A REST Web Api server template in Haskell, that serves as a reference
   and avoids repetive boilerplate when building many (micro)services.
   This combines best libraries available in Haskell web development, like RIO, warp, servant, etc.,
   and principles around 12-factor app.
-description: >
-  Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
+
+  Check @'Chakra'@ module documentation for example.
+
+  For more details, please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
 category:            Web
 github:              cackharot/haskell-web-api-template
 license:             MIT
@@ -46,8 +50,8 @@ dependencies:
 - wai-middleware-prometheus >= 1.0.0
 - prometheus-metrics-ghc >= 1.0.1.1
 - servant-server >= 0.18.2
-- servant-auth
-- servant-auth-server
+- servant-auth >= 0.3.2.0
+- servant-auth-server >= 0.4.5.1
 - fast-logger >= 2.4.17
 - iproute
 - network
@@ -74,26 +78,26 @@ library:
   - Network.Wai.Middleware.Health
   - Network.Wai.Middleware.Info
 
-# executables:
-#   Chakra-exe:
-#     main:                Main.hs
-#     source-dirs:         examples
-#     dependencies:
-#     - Chakra
-#     - optparse-simple
+executables:
+  chakra-exe:
+    main:                Main.hs
+    source-dirs:         examples
+    dependencies:
+    - chakra
+    - optparse-simple
 
-#     ghc-options:
-#     - -threaded
-#     - -rtsopts
-#     - -with-rtsopts=-N
-#     - -with-rtsopts=-T
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -with-rtsopts=-T
 
 tests:
-  Chakra-test:
+  chakra-test:
     main:                Spec.hs
     source-dirs:         test
     dependencies:
-    - Chakra
+    - chakra
     - hspec
 
     ghc-options:

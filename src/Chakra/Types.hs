@@ -5,6 +5,7 @@
 {-# LANGUAGE OverloadedStrings    #-}
 {-# LANGUAGE UndecidableInstances #-}
 
+-- |Types
 module Chakra.Types where
 
 import Data.Default
