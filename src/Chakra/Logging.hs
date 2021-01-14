@@ -5,22 +5,28 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeOperators #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# LANGUAGE UnicodeSyntax #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
-module Logging
-  ( module Logging,
-    module X,
+module Chakra.Logging
+  ( LogMessage,
+    ModLogger,
+    Formatter,
+    jsonFormatter,
+    newLogger,
+    buildLogger,
   )
 where
 
-import Control.Monad.Reader (MonadReader, asks)
 import Data.Aeson
-import Data.Has as X
+  ( ToJSON (toEncoding),
+    defaultOptions,
+    encode,
+    genericToEncoding,
+  )
+import Data.Has (Has (hasLens))
 import qualified Data.Text.Encoding as T
 import RIO
 import System.Log.FastLogger
-import System.Log.FastLogger as X (LogType (..), defaultBufSize)
 
 type ModLogger = LogFunc
 
@@ -42,6 +48,9 @@ instance ToJSON LogMessage where
 
 instance ToLogStr LogMessage where
   toLogStr a = (toLogStr . encode $ a) <> "\n"
+
+instance {-# OVERLAPPABLE #-} Has ModLogger a => HasLogFunc a where
+  logFuncL = hasLens
 
 -- | Creates a logger module using a given formatting function.
 -- | Also returns the underlying TimedFastLogger for use outside of your app (e.g. in some WAI middleware).
@@ -71,6 +80,8 @@ jsonFormatter envName appVer logger cs src logLvl msg = logger buildJsonLogMsg
           appVer
           envName
 
-instance {-# OVERLAPPABLE #-} Has ModLogger α => HasLogFunc α where
-  logFuncL = hasLens
-
+-- | Convenient function to create json formatted logger with appName & appVer values
+buildLogger :: Text -> Text -> IO ModLogger
+buildLogger envName appVer = do
+  (_, lf) <- newLogger (LogStderr defaultBufSize) (jsonFormatter envName appVer)
+  return lf

@@ -1,5 +1,13 @@
 name:                ApiTemplate
-version:             0.1.0.0
+version:             0.1.0
+synopsis: >
+  A REST Web Api server template in Haskell, that serves as a reference 
+  and avoids repetive boilerplate when building many (micro)services.
+  This uses best librarys available in Haskell web development, like RIO, Warp, Servant, etc.,
+  and principles around 12-factor app.
+description: >
+  Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
+category:            Web
 github:              cackharot/haskell-web-api-template
 license:             MIT
 author:              Cackharot
@@ -9,8 +17,7 @@ copyright:           2020 Cackharot
 extra-source-files:
 - README.md
 
-description:         Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
-
+tested-with:         GHC==8.6.5
 dependencies:
 - base >= 4.11 && < 10
 - rio >= 0.1.14.0
@@ -56,11 +63,21 @@ ghc-options:
 
 library:
   source-dirs: src
+  exposed-modules:
+  - Chakra
+  - Chakra.Types
+  - Chakra.App
+  - Chakra.Config
+  - Chakra.Logging
+  - Chakra.Util
+  - Chakra.JWT
+  - Network.Wai.Middleware.Health
+  - Network.Wai.Middleware.Info
 
 executables:
   ApiTemplate-exe:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:         examples
     dependencies:
     - ApiTemplate
     - optparse-simple

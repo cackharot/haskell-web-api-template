@@ -24,9 +24,9 @@ This serves as a base to create API projects that comes with the following featu
 - [x] Integrate with wai-util
 - [x] Setup JWT Authentication
 - [x] JSON Error formatting
+- [x] Setup HTTPS
 - [ ] Setup PSQL/SqlLite pool with Presistent
 - [ ] Setup Stack template
-- [x] Setup HTTPS
 
 ## Getting started
 
@@ -49,17 +49,15 @@ Health: http://localhost:3000/health
 
 Metrics: http://localhost:3000/metrics
 
-_Sample REST Resource:_
+_User REST Resource:_
 
-GET http://localhost:3000/samples        # list all samples
+GET http://localhost:3000/users        # list all users
 
-GET http://localhost:3000/samples/123    # fetch the given sample by id
+GET http://localhost:3000/users/123    # fetch the given user by id
 
-POST http://localhost:3000/samples/-1    # create new sample resource 
+POST http://localhost:3000/users/-1    # create new user resource
 
-PUT http://localhost:3000/samples/123    # Modify sample by id
-
-DELETE http://localhost:3000/samples/123 # Delete sample by id
+DELETE http://localhost:3000/users/123 # Delete user by id
 
 ## Run tests
 

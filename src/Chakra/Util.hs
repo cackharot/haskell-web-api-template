@@ -3,7 +3,7 @@
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE UnicodeSyntax        #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
-module Util
+module Chakra.Util
 where
 
 import           Data.Aeson

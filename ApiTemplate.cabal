@@ -4,11 +4,14 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 73b8d7214472a92c85b33d454f3055086b8a0711a5e0b048e18d98a97227c58e
+-- hash: 8f3995d0718bac996419fb09e139f9ae76c56f081ff3b9a91af42ec0dff72ef3
 
 name:           ApiTemplate
-version:        0.1.0.0
+version:        0.1.0
+synopsis:       A REST Web Api server template in Haskell, that serves as a reference  and avoids repetive boilerplate when building many (micro)services. This uses best librarys available in Haskell web development, like RIO, Warp, Servant, etc., and principles around 12-factor app.
+
 description:    Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
+category:       Web
 homepage:       https://github.com/cackharot/haskell-web-api-template#readme
 bug-reports:    https://github.com/cackharot/haskell-web-api-template/issues
 author:         Cackharot
@@ -16,6 +19,7 @@ maintainer:     cackharot@gmail.com
 copyright:      2020 Cackharot
 license:        MIT
 license-file:   LICENSE
+tested-with:    GHC==8.6.5
 build-type:     Simple
 extra-source-files:
     README.md
@@ -27,19 +31,16 @@ source-repository head
 library
   exposed-modules:
       Chakra
-      Config
-      Domain.API.User
-      Domain.Types
-      Import
-      JWT
-      Logging
+      Chakra.Types
+      Chakra.App
+      Chakra.Config
+      Chakra.Logging
+      Chakra.Util
+      Chakra.JWT
       Network.Wai.Middleware.Health
       Network.Wai.Middleware.Info
-      RequestLogging
-      Run
-      Types
-      Util
   other-modules:
+      Chakra.RequestLogging
       Paths_ApiTemplate
   hs-source-dirs:
       src
@@ -82,9 +83,10 @@ library
 executable ApiTemplate-exe
   main-is: Main.hs
   other-modules:
+      User
       Paths_ApiTemplate
   hs-source-dirs:
-      app
+      examples
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
   build-depends:
       ApiTemplate

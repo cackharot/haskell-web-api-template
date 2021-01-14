@@ -1,5 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-module RequestLogging where
+
+module Chakra.RequestLogging 
+  (jsonRequestLogger) 
+where
 
 import           Data.Aeson                           as X (KeyValue ((.=)),
                                                             ToJSON (toJSON),
@@ -24,10 +27,12 @@ import           Network.Wai
 import           Network.Wai.Middleware.RequestLogger (OutputFormat (..), OutputFormatterWithDetails,
                                                        mkRequestLogger,
                                                        outputFormat)
-import           RIO
+import           RIO                                  (Word32, Text, maybeToList)
 import           System.Log.FastLogger                (toLogStr)
 import           Text.Printf                          (printf)
 
+-- | JSON formatted request log middleware for WAI applications
+-- | it logs the given appName and appVer values
 jsonRequestLogger :: Text -> Text -> IO Middleware
 jsonRequestLogger envName appVer =
   mkRequestLogger $

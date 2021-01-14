@@ -2,7 +2,7 @@
 {-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module JWT where
+module Chakra.JWT where
 
 import           Control.Lens         (preview)
 import           Control.Monad.Except (Monad (return))
@@ -19,13 +19,6 @@ import           Servant.Auth.Server  (IsMatch (..), JWTSettings (..),
                                        generateKey)
 import           System.Environment   (lookupEnv)
 
-acquireJwks :: IO JWKSet
-acquireJwks = do
-  envUrl <- lookupEnv "JWK_PATH"
-  let jwkPath = fromMaybe "secrets/jwk.sig" envUrl
-  fileContent <- readFile jwkPath
-  let parsed = Aeson.eitherDecodeStrict fileContent
-  return $ either (\e -> error $ "Invalid JWK file: " <> e) id parsed
 
 getJWTAuthSettings :: IO JWTSettings
 getJWTAuthSettings = do
@@ -52,3 +45,10 @@ buildJWTSettings signKey jwkSet audMatches =
     }
   where
     vkeys k (JWKSet x) = JWKSet (x ++ [k])
+acquireJwks :: IO JWKSet
+acquireJwks = do
+  envUrl <- lookupEnv "JWK_PATH"
+  let jwkPath = fromMaybe "secrets/jwk.sig" envUrl
+  fileContent <- readFile jwkPath
+  let parsed = Aeson.eitherDecodeStrict fileContent
+  return $ either (\e -> error $ "Invalid JWK file: " <> e) id parsed
