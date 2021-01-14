@@ -1,6 +1,30 @@
+# Created by https://www.toptal.com/developers/gitignore/api/osx,haskell,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=osx,haskell,visualstudiocode
 
-# Created by https://www.gitignore.io/api/visualstudiocode,osx
-# Edit at https://www.gitignore.io/?templates=visualstudiocode,osx
+### Haskell ###
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.hie
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
 
 ### OSX ###
 # General
@@ -10,6 +34,7 @@
 
 # Icon must end with two \r
 Icon
+
 
 # Thumbnails
 ._*
@@ -32,34 +57,21 @@ Temporary Items
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
+*.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+.ionide
 
-.stack/
-.stack-work/
-bin/
-obj/
-.tmp
-.temp
-*.temp
-*.tmp
-tmp/
-.#*
-*.pem
-*.key
-*.crt
-*.cer
-*.csr
-*.srl
-
-TAGS
-
-# End of https://www.gitignore.io/api/visualstudiocode,osx
+# End of https://www.toptal.com/developers/gitignore/api/osx,haskell,visualstudiocode
 
 *jwt.sh
+certs/
+TAGS
+bin/
+obj/
+dist/
+sdist/
