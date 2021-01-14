@@ -1,10 +1,14 @@
-{-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NoImplicitPrelude    #-}
+{-# LANGUAGE OverloadedStrings    #-}
+{-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE UnicodeSyntax        #-}
+{-# OPTIONS_GHC -fno-warn-orphans #-}
 module Util
 where
 
 import           Data.Aeson
 import qualified Data.ByteString.Lazy     as L (ByteString)
+import           Data.Has
 import           Data.Text.Encoding       (decodeUtf8With)
 import           Data.Text.Encoding.Error (lenientDecode)
 import           Network.HTTP.Types       (hContentType)
@@ -41,3 +45,11 @@ notFoundFormatter req =
         , "error_message" .= dl "NotFound"
         , "path" .= dl (rawPathInfo req)
         ]
+
+-- | Gets a value of any type from the context.
+askObj :: (Has β α, MonadReader α μ) => μ β
+askObj = asks getter
+
+-- | Gets a thing from a value of any type from the context. (Useful for configuration fields.)
+askOpt :: (Has β α, MonadReader α μ) => (β -> ψ) -> μ ψ
+askOpt f = asks $ f . getter

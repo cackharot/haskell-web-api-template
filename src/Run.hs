@@ -25,7 +25,7 @@ runApi :: RIO AppConf ()
 runApi = do
   hSetBuffering stdin LineBuffering
   appConfig <- ask
-  userRepo <- liftIO U.newRepo
+  userRepo <- liftIO U.newInMemRepo
   middlewares <- liftIO $ appMiddlewares (appInfoDetail appConfig)
   jwtCfg <- liftIO getJWTAuthSettings
   let lf = view logFuncL appConfig
@@ -35,6 +35,6 @@ runApi = do
   runChakraAppWithMetrics
     middlewares
     sctx
-    (lf, appInfoDetail appConfig)
+    (lf, appInfoDetail appConfig, userRepo)
     appAPI
     appServer

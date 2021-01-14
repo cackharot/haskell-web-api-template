@@ -74,10 +74,3 @@ jsonFormatter envName appVer logger cs src logLvl msg = logger buildJsonLogMsg
 instance {-# OVERLAPPABLE #-} Has ModLogger α => HasLogFunc α where
   logFuncL = hasLens
 
--- | Gets a value of any type from the context.
-askObj :: (Has β α, MonadReader α μ) => μ β
-askObj = asks getter
-
--- | Gets a thing from a value of any type from the context. (Useful for configuration fields.)
-askOpt :: (Has β α, MonadReader α μ) => (β -> ψ) -> μ ψ
-askOpt f = asks $ f . getter
