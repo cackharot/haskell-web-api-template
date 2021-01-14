@@ -3,7 +3,7 @@ version:             0.1.0
 synopsis: >
   A REST Web Api server template in Haskell, that serves as a reference 
   and avoids repetive boilerplate when building many (micro)services.
-  This uses best librarys available in Haskell web development, like RIO, Warp, Servant, etc.,
+  This combines best libraries available in Haskell web development, like RIO, warp, servant, etc.,
   and principles around 12-factor app.
 description: >
   Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>

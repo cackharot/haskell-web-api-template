@@ -7,19 +7,12 @@
 
 module Chakra.Types where
 
+import Data.Default
 import qualified Data.Aeson             as A
 import qualified Data.Text              as T
 import           RIO
 import           Servant.Auth.Server
 import           System.Envy
-
-data BasicAppConf = BasicAppConf
-  { appLogFunc        :: !LogFunc,
-    appInfoDetail     :: !InfoDetail
-  }
-
-instance HasLogFunc BasicAppConf where
-  logFuncL = lens appLogFunc (\x y -> x {appLogFunc = y})
 
 data InfoDetail = InfoDetail
   { appName        :: !Text,
@@ -30,6 +23,9 @@ data InfoDetail = InfoDetail
   deriving (Show, Eq, Generic)
 
 instance FromEnv InfoDetail
+
+instance Default InfoDetail where
+  def = InfoDetail "example" "dev" "0.1" "change me"
 
 instance A.ToJSON InfoDetail where
   toJSON =
