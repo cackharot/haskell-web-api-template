@@ -1,4 +1,4 @@
-name:                ApiTemplate
+name:                Chakra
 version:             0.1.0
 synopsis: >
   A REST Web Api server template in Haskell, that serves as a reference 
@@ -74,26 +74,26 @@ library:
   - Network.Wai.Middleware.Health
   - Network.Wai.Middleware.Info
 
-executables:
-  ApiTemplate-exe:
-    main:                Main.hs
-    source-dirs:         examples
-    dependencies:
-    - ApiTemplate
-    - optparse-simple
+# executables:
+#   Chakra-exe:
+#     main:                Main.hs
+#     source-dirs:         examples
+#     dependencies:
+#     - Chakra
+#     - optparse-simple
 
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    - -with-rtsopts=-T
+#     ghc-options:
+#     - -threaded
+#     - -rtsopts
+#     - -with-rtsopts=-N
+#     - -with-rtsopts=-T
 
 tests:
-  ApiTemplate-test:
+  Chakra-test:
     main:                Spec.hs
     source-dirs:         test
     dependencies:
-    - ApiTemplate
+    - Chakra
     - hspec
 
     ghc-options:

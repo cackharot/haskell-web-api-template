@@ -4,11 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8f3995d0718bac996419fb09e139f9ae76c56f081ff3b9a91af42ec0dff72ef3
+-- hash: e960150b74649744f4a4ec27b22be8db8989ef9e509bfd2b062f236d42f436af
 
-name:           ApiTemplate
+name:           Chakra
 version:        0.1.0
-synopsis:       A REST Web Api server template in Haskell, that serves as a reference  and avoids repetive boilerplate when building many (micro)services. This uses best librarys available in Haskell web development, like RIO, Warp, Servant, etc., and principles around 12-factor app.
+synopsis:       A REST Web Api server template in Haskell, that serves as a reference  and avoids repetive boilerplate when building many (micro)services. This combines best libraries available in Haskell web development, like RIO, warp, servant, etc., and principles around 12-factor app.
 
 description:    Please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
 category:       Web
@@ -41,7 +41,7 @@ library
       Network.Wai.Middleware.Info
   other-modules:
       Chakra.RequestLogging
-      Paths_ApiTemplate
+      Paths_Chakra
   hs-source-dirs:
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
@@ -80,62 +80,17 @@ library
     , warp >=3.3.5
   default-language: Haskell2010
 
-executable ApiTemplate-exe
-  main-is: Main.hs
-  other-modules:
-      User
-      Paths_ApiTemplate
-  hs-source-dirs:
-      examples
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
-  build-depends:
-      ApiTemplate
-    , aeson >=1.4.6.0
-    , base >=4.11 && <10
-    , bytestring >=0.10.8.2
-    , cryptonite
-    , data-default >=0.7.1.1
-    , data-has
-    , dotenv >=0.8.0.4
-    , envy >=2.0.0.0
-    , fast-logger >=2.4.17
-    , http-types >=0.12.3
-    , iproute
-    , jose
-    , lens
-    , mtl >=2.2.2
-    , network
-    , network-uri
-    , optparse-simple
-    , prometheus-client >=1.0.0
-    , prometheus-metrics-ghc >=1.0.1.1
-    , rio >=0.1.14.0
-    , servant-auth
-    , servant-auth-server
-    , servant-server >=0.18.2
-    , string-conversions
-    , text >=1.2.3.1
-    , time
-    , transformers >=0.5.6.2
-    , unordered-containers >=0.2.10.0
-    , wai >=3.2.2.1
-    , wai-cli
-    , wai-extra
-    , wai-middleware-prometheus >=1.0.0
-    , warp >=3.3.5
-  default-language: Haskell2010
-
-test-suite ApiTemplate-test
+test-suite Chakra-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
       UtilSpec
-      Paths_ApiTemplate
+      Paths_Chakra
   hs-source-dirs:
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      ApiTemplate
+      Chakra
     , aeson >=1.4.6.0
     , base >=4.11 && <10
     , bytestring >=0.10.8.2
