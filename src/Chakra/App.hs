@@ -88,8 +88,8 @@ chakraMiddlewares infoDetail = do
 registerMetrics :: MonadIO m => m P.GHCMetrics
 registerMetrics = P.register P.ghcMetrics
 
-customErrorFormatters :: ErrorFormatters
-customErrorFormatters =
+chakraErrorFormatters :: ErrorFormatters
+chakraErrorFormatters =
   defaultErrorFormatters
     { bodyParserErrorFormatter = jsonErrorFormatter,
       notFoundErrorFormatter = notFoundFormatter

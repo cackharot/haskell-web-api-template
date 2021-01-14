@@ -26,31 +26,19 @@ main = do
   -- Load the AppSettings data from ENV variables
   withAppSettingsFromEnv $ \appSettings -> do
     -- Override the version from cabal file
-    let infoDetail = appSettings {appVersion = T.pack ver}
-        ver = $(simpleVersion Paths_ApiTemplate.version) -- TH to get cabal project's git sha version
-    lf <- buildLogger (appEnvironment infoDetail) (appVersion infoDetail)
-    let app =
-          BasicAppConf
-            { appLogFunc = lf,
-              appInfoDetail = infoDetail
-            }
-    runRIO app runApp
-
-runApp :: RIO BasicAppConf ()
-runApp = do
-  appConfig <- ask
-  userRepo <- liftIO U.newInMemRepo
-  let infoDetail = appInfoDetail appConfig
-  middlewares <- liftIO $ chakraMiddlewares infoDetail
-  jwtCfg <- liftIO getJWTAuthSettings
-  let lf = view logFuncL appConfig
-      cookieCfg = defaultCookieSettings {cookieIsSecure = SAS.NotSecure}
-      sctx = cookieCfg :. jwtCfg :. customErrorFormatters :. EmptyContext
-      appServer = U.server :<|> emptyServer
-  -- Run API server with JWT auth and in-mem user repo
-  runChakraAppWithMetrics
-    middlewares
-    sctx
-    (lf, infoDetail, userRepo)
-    appAPI
-    appServer
+    let ver = $(simpleVersion Paths_ApiTemplate.version) -- TH to get cabal project's git sha version
+        infoDetail = appSettings {appVersion = T.pack ver}
+    logFunc <- buildLogger (appEnvironment infoDetail) (appVersion infoDetail)
+    userRepo <- U.newInMemRepo
+    middlewares <- chakraMiddlewares infoDetail
+    jwtCfg <- getJWTAuthSettings
+    let cookieCfg = defaultCookieSettings {cookieIsSecure = SAS.NotSecure}
+        sctx = cookieCfg :. jwtCfg :. chakraErrorFormatters :. EmptyContext
+        appServer = U.server :<|> emptyServer
+    -- Run API server with JWT auth and in-mem user repo
+    runChakraAppWithMetrics
+      middlewares
+      sctx
+      (logFunc, infoDetail, userRepo)
+      appAPI
+      appServer
