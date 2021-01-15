@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 671a9131577370be518a25858a813c35254c2497c4b808afc6e3eef1161ef4c8
+-- hash: 5eb550c194b2bdeeff35b30c2b7ef225b404213e7ce6db2c9786f1a770862dff
 
 name:           chakra
 version:        0.1.0
@@ -26,7 +26,7 @@ maintainer:     cackharot@gmail.com
 copyright:      2020 Cackharot
 license:        MIT
 license-file:   LICENSE
-tested-with:    GHC==8.6.5
+tested-with:    GHC==8.8.4
 build-type:     Simple
 extra-source-files:
     README.md
@@ -44,6 +44,7 @@ library
       Chakra.Logging
       Chakra.Util
       Chakra.JWT
+      Network.Wai.Cli
       Network.Wai.Middleware.Health
       Network.Wai.Middleware.Info
   other-modules:
@@ -53,38 +54,40 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
-      aeson >=1.4.6.0
+      aeson
+    , ansi-terminal
     , base >=4.11 && <10
-    , bytestring >=0.10.8.2
+    , bytestring
     , cryptonite
-    , data-default >=0.7.1.1
+    , data-default
     , data-has
-    , dotenv >=0.8.0.4
-    , envy >=2.0.0.0
-    , fast-logger >=2.4.17
-    , http-types >=0.12.3
+    , dotenv
+    , envy
+    , fast-logger
+    , http-types
     , iproute
     , jose
     , lens
-    , mtl >=2.2.2
+    , mtl
     , network
     , network-uri
-    , prometheus-client >=1.0.0
-    , prometheus-metrics-ghc >=1.0.1.1
-    , rio >=0.1.14.0
-    , servant-auth >=0.3.2.0
-    , servant-auth-server >=0.4.5.1
+    , options
+    , prometheus-client
+    , prometheus-metrics-ghc
+    , rio
+    , servant-auth >=0.4.0.0
+    , servant-auth-server >=0.4.6.0
     , servant-server >=0.18.2
+    , streaming-commons
     , string-conversions
-    , text >=1.2.3.1
+    , text
     , time
-    , transformers >=0.5.6.2
-    , unordered-containers >=0.2.10.0
-    , wai >=3.2.2.1
-    , wai-cli
+    , transformers
+    , unordered-containers
+    , wai
     , wai-extra
-    , wai-middleware-prometheus >=1.0.0
-    , warp >=3.3.5
+    , wai-middleware-prometheus
+    , warp
   default-language: Haskell2010
 
 executable chakra-exe
@@ -96,40 +99,42 @@ executable chakra-exe
       examples
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
   build-depends:
-      aeson >=1.4.6.0
+      aeson
+    , ansi-terminal
     , base >=4.11 && <10
-    , bytestring >=0.10.8.2
+    , bytestring
     , chakra
     , cryptonite
-    , data-default >=0.7.1.1
+    , data-default
     , data-has
-    , dotenv >=0.8.0.4
-    , envy >=2.0.0.0
-    , fast-logger >=2.4.17
-    , http-types >=0.12.3
+    , dotenv
+    , envy
+    , fast-logger
+    , http-types
     , iproute
     , jose
     , lens
-    , mtl >=2.2.2
+    , mtl
     , network
     , network-uri
+    , options
     , optparse-simple
-    , prometheus-client >=1.0.0
-    , prometheus-metrics-ghc >=1.0.1.1
-    , rio >=0.1.14.0
-    , servant-auth >=0.3.2.0
-    , servant-auth-server >=0.4.5.1
+    , prometheus-client
+    , prometheus-metrics-ghc
+    , rio
+    , servant-auth >=0.4.0.0
+    , servant-auth-server >=0.4.6.0
     , servant-server >=0.18.2
+    , streaming-commons
     , string-conversions
-    , text >=1.2.3.1
+    , text
     , time
-    , transformers >=0.5.6.2
-    , unordered-containers >=0.2.10.0
-    , wai >=3.2.2.1
-    , wai-cli
+    , transformers
+    , unordered-containers
+    , wai
     , wai-extra
-    , wai-middleware-prometheus >=1.0.0
-    , warp >=3.3.5
+    , wai-middleware-prometheus
+    , warp
   default-language: Haskell2010
 
 test-suite chakra-test
@@ -142,38 +147,40 @@ test-suite chakra-test
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson >=1.4.6.0
+      aeson
+    , ansi-terminal
     , base >=4.11 && <10
-    , bytestring >=0.10.8.2
+    , bytestring
     , chakra
     , cryptonite
-    , data-default >=0.7.1.1
+    , data-default
     , data-has
-    , dotenv >=0.8.0.4
-    , envy >=2.0.0.0
-    , fast-logger >=2.4.17
+    , dotenv
+    , envy
+    , fast-logger
     , hspec
-    , http-types >=0.12.3
+    , http-types
     , iproute
     , jose
     , lens
-    , mtl >=2.2.2
+    , mtl
     , network
     , network-uri
-    , prometheus-client >=1.0.0
-    , prometheus-metrics-ghc >=1.0.1.1
-    , rio >=0.1.14.0
-    , servant-auth >=0.3.2.0
-    , servant-auth-server >=0.4.5.1
+    , options
+    , prometheus-client
+    , prometheus-metrics-ghc
+    , rio
+    , servant-auth >=0.4.0.0
+    , servant-auth-server >=0.4.6.0
     , servant-server >=0.18.2
+    , streaming-commons
     , string-conversions
-    , text >=1.2.3.1
+    , text
     , time
-    , transformers >=0.5.6.2
-    , unordered-containers >=0.2.10.0
-    , wai >=3.2.2.1
-    , wai-cli
+    , transformers
+    , unordered-containers
+    , wai
     , wai-extra
-    , wai-middleware-prometheus >=1.0.0
-    , warp >=3.3.5
+    , wai-middleware-prometheus
+    , warp
   default-language: Haskell2010

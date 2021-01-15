@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- |Contains functions to log WAI request in JSON format
-module Chakra.RequestLogging 
-  (jsonRequestLogger) 
+module Chakra.RequestLogging
+  (jsonRequestLogger)
 where
 
 import           Data.Aeson                           as X (KeyValue ((.=)),
@@ -28,7 +28,8 @@ import           Network.Wai
 import           Network.Wai.Middleware.RequestLogger (OutputFormat (..), OutputFormatterWithDetails,
                                                        mkRequestLogger,
                                                        outputFormat)
-import           RIO                                  (Word32, Text, maybeToList)
+import           RIO                                  (Text, Word32,
+                                                       maybeToList)
 import           System.Log.FastLogger                (toLogStr)
 import           Text.Printf                          (printf)
 
@@ -102,8 +103,6 @@ sockToJSON (SockAddrInet6 pn _ ha _) =
   object ["port" .= portToJSON pn, "hostAddress" .= ha]
 sockToJSON (SockAddrUnix sock) =
   object ["unix" .= sock]
-sockToJSON _ =
-  object ["unknownSock" .= True]
 
 portToJSON :: PortNumber -> Value
 portToJSON = toJSON . toInteger

@@ -9,11 +9,11 @@ module Chakra.Util
 where
 
 import           Data.Aeson
-import qualified Data.ByteString.Lazy     as L (ByteString)
+import qualified Data.ByteString.Lazy as L (ByteString)
 import           Data.Has
-import           Data.Text.Encoding       (decodeUtf8With)
-import           Data.Text.Encoding.Error (lenientDecode)
-import           Network.HTTP.Types       (hContentType)
+-- import           Data.Text.Encoding       (decodeUtf8With)
+-- import           Data.Text.Encoding.Error (lenientDecode)
+import           Network.HTTP.Types   (hContentType)
 import           Network.Wai
 import           RIO
 import           Servant

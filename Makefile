@@ -14,7 +14,7 @@ build: ## Build the project and generate executable
 	$(STACK) build --local-bin-path $(BIN) --copy-bins
 
 doc: ## Build the project haddoc documentation
-	$(STACK) haddock && open .stack-work/dist/x86_64-osx/Cabal-2.4.0.1/doc/html/chakra/index.html
+	$(STACK) haddock --no-haddock-deps && open .stack-work/dist/x86_64-osx/Cabal-3.0.1.0/doc/html/chakra/index.html
 
 package: ## Build source distribute package to upload to hackage
 	$(STACK) sdist --tar-dir "$(DIST)"

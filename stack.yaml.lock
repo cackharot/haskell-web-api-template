@@ -5,13 +5,6 @@
 
 packages:
 - completed:
-    hackage: wai-cli-0.2.0@sha256:16c864bc829f4572fa3ea72a1a1d9aae23fe0b076069c1e58a42e4224f819ce9,1771
-    pantry-tree:
-      size: 269
-      sha256: 114d289439b83649db9a522a508b0bfd1da018834576a27e6fcc6dde99ead1af
-  original:
-    hackage: wai-cli-0.2.0
-- completed:
     hackage: prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
     pantry-tree:
       size: 293
@@ -26,22 +19,36 @@ packages:
   original:
     hackage: wai-middleware-prometheus-1.0.0
 - completed:
-    hackage: servant-0.18.2@sha256:f8c9f0e9891a3ada1337a3c0b369333a3b5a2d0909dd3cd09d79bc26adeaca44,5298
+    hackage: servant-auth-0.4.0.0@sha256:01d02dfb7df4747fc96442517146d7d4ab0e575e597a124e238e8763036ea4ff,2125
     pantry-tree:
-      size: 2662
-      sha256: e930e814de1aa4d24274bdf18341a50b7ed38604ae4734f730e09238ac5bf7e2
+      size: 332
+      sha256: a7ec2c54fddfa417ee2467f1131b1d83ad43cc29ddfd4b98869fc924e4b5e980
   original:
-    hackage: servant-0.18.2
+    hackage: servant-auth-0.4.0.0@sha256:01d02dfb7df4747fc96442517146d7d4ab0e575e597a124e238e8763036ea4ff,2125
+- completed:
+    hackage: servant-auth-server-0.4.6.0@sha256:b411b44f4252e91e5da2455d71a7113c8b5b8ff2d943d19b2ddedcfcf0392351,5111
+    pantry-tree:
+      size: 1376
+      sha256: 8cd29612112546a02085e2cb30dd5a72ea46ed81e644195c589d0b26652279cb
+  original:
+    hackage: servant-auth-server-0.4.6.0@sha256:b411b44f4252e91e5da2455d71a7113c8b5b8ff2d943d19b2ddedcfcf0392351,5111
 - completed:
     hackage: servant-server-0.18.2@sha256:56679af62ab8820a2108da6153d9ae9dde37199e62172365bdaea1458c3f7c2d,5482
     pantry-tree:
       size: 2614
       sha256: 3ac7430134439e4b67f0f5333f63b89d0cb7de5e2e07f0af7801c8e223942b9c
   original:
-    hackage: servant-server-0.18.2
+    hackage: servant-server-0.18.2@sha256:56679af62ab8820a2108da6153d9ae9dde37199e62172365bdaea1458c3f7c2d,5482
+- completed:
+    hackage: servant-0.18.2@sha256:f8c9f0e9891a3ada1337a3c0b369333a3b5a2d0909dd3cd09d79bc26adeaca44,5298
+    pantry-tree:
+      size: 2662
+      sha256: e930e814de1aa4d24274bdf18341a50b7ed38604ae4734f730e09238ac5bf7e2
+  original:
+    hackage: servant-0.18.2@sha256:f8c9f0e9891a3ada1337a3c0b369333a3b5a2d0909dd3cd09d79bc26adeaca44,5298
 snapshots:
 - completed:
-    size: 524996
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/27.yaml
-    sha256: 7ea31a280c56bf36ff591a7397cc384d0dff622e7f9e4225b47d8980f019a0f0
-  original: lts-14.27
+    size: 532377
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/12.yaml
+    sha256: f914cfa23fef85bdf895e300a8234d9d0edc2dbec67f4bc9c53f85867c50eab6
+  original: lts-16.12

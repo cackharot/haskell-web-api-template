@@ -21,38 +21,41 @@ copyright:           2020 Cackharot
 extra-source-files:
 - README.md
 
-tested-with:         GHC==8.6.5
+tested-with:         GHC==8.8.4
 dependencies:
 - base >= 4.11 && < 10
-- rio >= 0.1.14.0
+- rio
 - time
-- text >= 1.2.3.1
-- mtl >= 2.2.2
-- data-default >= 0.7.1.1
+- text
+- mtl
+- data-default
 - data-has
 - lens
 - network-uri
-- bytestring >= 0.10.8.2 
+- bytestring
 - string-conversions
 - cryptonite
 - jose
-- unordered-containers >= 0.2.10.0
-- transformers >= 0.5.6.2
-- dotenv >= 0.8.0.4
-- envy >= 2.0.0.0
-- aeson >= 1.4.6.0
-- http-types >= 0.12.3
-- warp >= 3.3.5
-- wai >= 3.2.2.1
+- unordered-containers
+- transformers
+- dotenv
+- envy
+- aeson
+- http-types
+- warp
+- wai
 - wai-extra
-- wai-cli
-- prometheus-client >= 1.0.0
-- wai-middleware-prometheus >= 1.0.0
-- prometheus-metrics-ghc >= 1.0.1.1
+# - wai-cli
+- options
+- streaming-commons
+- ansi-terminal
+- prometheus-client
+- wai-middleware-prometheus
+- prometheus-metrics-ghc
 - servant-server >= 0.18.2
-- servant-auth >= 0.3.2.0
-- servant-auth-server >= 0.4.5.1
-- fast-logger >= 2.4.17
+- servant-auth >= 0.4.0.0
+- servant-auth-server >= 0.4.6.0
+- fast-logger
 - iproute
 - network
 
@@ -75,6 +78,7 @@ library:
   - Chakra.Logging
   - Chakra.Util
   - Chakra.JWT
+  - Network.Wai.Cli
   - Network.Wai.Middleware.Health
   - Network.Wai.Middleware.Info
 
