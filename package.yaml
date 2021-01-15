@@ -45,7 +45,7 @@ dependencies:
 - warp
 - wai
 - wai-extra
-# - wai-cli
+- wai-cli
 - options
 - streaming-commons
 - ansi-terminal
@@ -78,7 +78,6 @@ library:
   - Chakra.Logging
   - Chakra.Util
   - Chakra.JWT
-  - Network.Wai.Cli
   - Network.Wai.Middleware.Health
   - Network.Wai.Middleware.Info
 

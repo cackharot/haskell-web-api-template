@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5eb550c194b2bdeeff35b30c2b7ef225b404213e7ce6db2c9786f1a770862dff
+-- hash: 9af72703e6f7a3d8e061d3aa1d50100a9073f82703f7e0a93b37d08e3a35f08e
 
 name:           chakra
 version:        0.1.0
@@ -44,7 +44,6 @@ library
       Chakra.Logging
       Chakra.Util
       Chakra.JWT
-      Network.Wai.Cli
       Network.Wai.Middleware.Health
       Network.Wai.Middleware.Info
   other-modules:
@@ -85,6 +84,7 @@ library
     , transformers
     , unordered-containers
     , wai
+    , wai-cli
     , wai-extra
     , wai-middleware-prometheus
     , warp
@@ -132,6 +132,7 @@ executable chakra-exe
     , transformers
     , unordered-containers
     , wai
+    , wai-cli
     , wai-extra
     , wai-middleware-prometheus
     , warp
@@ -180,6 +181,7 @@ test-suite chakra-test
     , transformers
     , unordered-containers
     , wai
+    , wai-cli
     , wai-extra
     , wai-middleware-prometheus
     , warp
