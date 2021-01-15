@@ -105,7 +105,7 @@ extra-deps:
 A stack project template is also available for bootstraping quickly
 
 ```bash
-stack new UserApi https://github.com/cackharot/haskell-web-api-template.git
+stack new UserApi cackharot/haskell-web-api-template
 ```
 
 ## Build & Run
