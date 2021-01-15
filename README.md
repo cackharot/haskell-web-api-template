@@ -38,7 +38,9 @@ To create a bare minimum API service all you need is below:
  --package chakra
 -}
 {-# LANGUAGE NoImplicitPrelude, OverloadedStrings, UnicodeSyntax, DataKinds, TypeOperators #-}
+import RIO
 import Chakra
+import Servant
 
 type HelloRoute = "hello" :> QueryParam "name" Text :> Get '[PlainText] Text
 type API = HelloRoute :<|> EmptyAPI
