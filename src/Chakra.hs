@@ -73,6 +73,7 @@ import Chakra.JWT
 import Chakra.Logging
 import Chakra.Types
 import Chakra.Util
+import RIO
 
 -- | Basic application context, mostly used in examples.
 -- For real life you need to create one for your application
