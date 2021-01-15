@@ -105,7 +105,7 @@ extra-deps:
 A stack project template is also available for bootstraping quickly
 
 ```bash
-stack new UserApi cackharot/haskell-web-api-template
+stack new UserApi https://raw.githubusercontent.com/cackharot/haskell-web-api-template/main/chakra.hsfiles
 ```
 
 ## Build & Run
