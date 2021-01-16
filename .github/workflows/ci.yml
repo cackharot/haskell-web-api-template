@@ -1,0 +1,37 @@
+name: Chakra CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  stack:
+    name: ghc ${{ matrix.ghc }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ghc: ["8.6.5", "8.8.4"]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        stack-version: latest
+        enable-stack: true
+
+    - name: Cache
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-cabal
+      with:
+        path: ~/.stack
+        key: ${{ runner.os }}-ci-${{ env.cache-name }}-${{ matrix.ghc }}
+
+    - name: Install & Build dependencies
+      run: |
+        stack build --only-dependencies --enable-tests --enable-benchmarks
+    - name: Build
+      run: stack build --system-ghc --test --bench --no-run-tests --no-run-benchmarks
