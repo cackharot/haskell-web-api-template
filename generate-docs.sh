@@ -1,9 +1,9 @@
 #!/bin/sh
 set -e
 
-dir=$(mktemp -d dist-docs.0.1.0)
+dir=$(mktemp -d dist-docs.XXXX)
 trap 'rm -r "$dir"' EXIT
 
-stack exec -- cabal v2-haddock --builddir="$dir" --haddock-for-hackage --enable-doc
+stack exec cabal -- v2-haddock --builddir="$dir" --haddock-for-hackage --enable-doc
 
-stack exec -- cabal upload -d --publish "$dir/*-docs.tar.gz"
+stack exec cabal -- upload -d --publish "$dir/*-docs.tar.gz"
