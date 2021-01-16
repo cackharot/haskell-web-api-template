@@ -36,3 +36,7 @@ jobs:
     - name: Build
       run: |
         stack build --system-ghc --test --bench --no-run-tests --no-run-benchmarks
+    - name: Tests
+      run: |
+        stack test --system-ghc --no-run-benchmarks
+
