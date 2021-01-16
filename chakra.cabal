@@ -4,18 +4,23 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9af72703e6f7a3d8e061d3aa1d50100a9073f82703f7e0a93b37d08e3a35f08e
+-- hash: ed84bd45513e7957dd1254d806c83022fb78ac260bef475addae82254f097b0b
 
 name:           chakra
 version:        0.1.0
-synopsis:       A REST Web Api server template in Haskell for building (micro)services.
+synopsis:       A REST Web Api server template for building (micro)services.
 
-description:    A REST Web Api server template in Haskell, that serves as a reference
+description:    A REST Web Api server template, that serves as a reference
                 and avoids repetive boilerplate when building many (micro)services.
                 This combines best libraries available in Haskell web development, like RIO, warp, servant, etc.,
                 and principles around 12-factor app.
                 .
                 Check @'Chakra'@ module documentation for example.
+                .
+                Idea is to provide Curated & Opinionated set of packages and
+                patterns to build well designed web api applications in Haskell.
+                .
+                Inspiration from Python Flask, ASP.NET Core
                 .
                 For more details, please see the README on Github at <https://github.com/cackharot/haskell-web-api-template#readme>
 category:       Web

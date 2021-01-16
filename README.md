@@ -1,4 +1,6 @@
-# Web Api Template
+# Chakra :: Web Api Template
+
+[![Hackage](https://img.shields.io/hackage/v/chakra.svg)](https://hackage.haskell.org/package/chakra) [![Build Status](https://github.com/cackharot/chakra/workflows/ci/badge.svg)](https://github.com/cackharot/chakra/actions?query=workflow%3Aci) [![Hackage Deps](https://img.shields.io/hackage-deps/v/chakra.svg)](http://packdeps.haskellers.com/reverse/chakra)
 
 A REST web api server template in Haskell.
 
