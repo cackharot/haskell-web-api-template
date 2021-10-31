@@ -71,8 +71,13 @@ Temporary Items
 *jwt.sh
 certs/
 TAGS
+build/
 bin/
 obj/
 dist/
 sdist/
 dist-docs*/
+chakra-exe.prof.html
+tmp/
+cache/
+packagedb/
