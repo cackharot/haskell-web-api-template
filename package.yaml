@@ -1,5 +1,5 @@
 name:                chakra
-version:             0.1.0
+version:             0.1.1
 synopsis: >
   A REST Web Api server template for building (micro)services.
 description: |
@@ -100,6 +100,7 @@ executables:
     ghc-options:
       - -threaded
       - -rtsopts
+      # - -prof
       - -with-rtsopts=-N
       - -with-rtsopts=-T
 

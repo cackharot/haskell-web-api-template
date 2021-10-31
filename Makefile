@@ -13,6 +13,9 @@ help: ## Print documentation
 build: ## Build the project and generate executable
 	$(STACK) build --local-bin-path $(BIN) --copy-bins
 
+build-prof:
+	$(STACK) build --local-bin-path $(BIN) --copy-bins --profile
+
 doc: ## Build the project haddoc documentation
 	$(STACK) haddock --no-haddock-deps && open .stack-work/dist/x86_64-osx/Cabal-3.0.1.0/doc/html/chakra/index.html
 
@@ -27,6 +30,9 @@ run-watch: ## Build & Runs the program watching for file changes
 
 runp: ## Runs the program binary directly
 	$(STACK) exec $(APP_NAME) -- $(OPTS) --port $(PORT)
+
+run-prof:
+	$(BIN)/$(APP_NAME) --port $(PORT) +RTS -N4 -p -A32m -RTS
 
 runhttps: ## Runs server on HTTPS
 	$(STACK) exec $(APP_NAME) -- $(OPTS) --port $(HTTPS_PORT) --protocol http+tls  --tlskey certs/localhost.key --tlscert certs/localhost.crt

@@ -2,9 +2,7 @@ resolver: lts-16.12
 packages:
 - .
 extra-deps:
-# - wai-cli-0.2.2
-- git: https://github.com/cackharot/wai-cli.git
-  commit: 9f80498a7fa77a660952796119f39da9f83dafef
+- wai-cli-0.2.3
 - prometheus-metrics-ghc-1.0.1.1
 - wai-middleware-prometheus-1.0.0
 - servant-auth-0.4.0.0

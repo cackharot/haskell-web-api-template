@@ -1,21 +1,21 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE DataKinds            #-}
+{-# LANGUAGE DeriveGeneric        #-}
+{-# LANGUAGE FlexibleContexts     #-}
+{-# LANGUAGE FlexibleInstances    #-}
+{-# LANGUAGE NoImplicitPrelude    #-}
+{-# LANGUAGE OverloadedStrings    #-}
+{-# LANGUAGE TypeOperators        #-}
 {-# LANGUAGE UndecidableInstances #-}
-{-# LANGUAGE NoImplicitPrelude #-}
 
-module User (UserAppCtx, server, UserAPI, userAPI, newInMemRepo) where
+module User (UserAppCtx, UserApp, server, UserAPI, userAPI, newInMemRepo) where
 
-import RIO
-import Chakra
-import Data.Aeson
-import Data.Has
+import           Chakra
+import           Data.Aeson
+import           Data.Has
 import qualified Data.HashMap.Strict as B
-import Servant
-import Servant.Auth.Server as SAS
+import           RIO
+import           Servant
+import           Servant.Auth.Server as SAS
 
 newtype Name = Name Text
   deriving (Eq, Show, Generic)
@@ -24,7 +24,7 @@ newtype Email = Email Text
   deriving (Eq, Show, Generic)
 
 data User = User
-  { _name :: !Name,
+  { _name  :: !Name,
     _email :: !Email
   }
   deriving (Eq, Show, Generic)
@@ -42,9 +42,9 @@ instance ToJSON User
 instance FromJSON User
 
 data UserRepo = UserRepo
-  { _getUser :: !(Text -> IO (Maybe User)),
+  { _getUser     :: !(Text -> IO (Maybe User)),
     _getAllUsers :: !(IO [User]),
-    _insertUser :: !(Text -> User -> IO ())
+    _insertUser  :: !(Text -> User -> IO ())
   }
 
 class HasUserRepo env where

@@ -5,16 +5,12 @@
 
 packages:
 - completed:
-    name: wai-cli
-    version: 0.2.2
-    git: https://github.com/cackharot/wai-cli.git
+    hackage: wai-cli-0.2.3@sha256:17ac631c5f11bedb4e32604d351084cafbdb1be4953cd1f521e55f06d82729dc,1958
     pantry-tree:
-      size: 586
-      sha256: abe7db169a5a932dd226714401748fad29ab2f050a2a6f357e00587deac2a103
-    commit: 9f80498a7fa77a660952796119f39da9f83dafef
+      size: 269
+      sha256: 0b2f8570e15d502cfddd524741b24e4f4a639b0d18ead18f79a0444c25cc0812
   original:
-    git: https://github.com/cackharot/wai-cli.git
-    commit: 9f80498a7fa77a660952796119f39da9f83dafef
+    hackage: wai-cli-0.2.3
 - completed:
     hackage: prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
     pantry-tree:

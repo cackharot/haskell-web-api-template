@@ -1,13 +1,13 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ed84bd45513e7957dd1254d806c83022fb78ac260bef475addae82254f097b0b
+-- hash: 9e7750b4336bc0972df52e350f0db3de4e77ded6e54e2f3a61831149a4f3abe5
 
 name:           chakra
-version:        0.1.0
+version:        0.1.1
 synopsis:       A REST Web Api server template for building (micro)services.
 
 description:    A REST Web Api server template, that serves as a reference
@@ -31,7 +31,8 @@ maintainer:     cackharot@gmail.com
 copyright:      2020 Cackharot
 license:        MIT
 license-file:   LICENSE
-tested-with:    GHC==8.8.4
+tested-with:
+    GHC==8.8.4
 build-type:     Simple
 extra-source-files:
     README.md

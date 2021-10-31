@@ -1,22 +1,33 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
+{-# LANGUAGE TypeOperators     #-}
 
 module Main (main) where
 
-import RIO
-import Chakra
-import Servant
-import Configuration.Dotenv (defaultConfig, loadFile)
-import qualified Data.Text as T
-import Options.Applicative.Simple
+import           Chakra
+import           Configuration.Dotenv       (defaultConfig, loadFile)
+import qualified Data.Text                  as T
+import           Options.Applicative.Simple
 import qualified Paths_chakra
-import Servant.Auth.Server as SAS
-import qualified User as U
+import           RIO
+import           Servant
+import           Servant.Auth.Server        as SAS
+import qualified User                       as U
 
-type API auths = (SAS.Auth auths AuthenticatedUser :> U.UserAPI) :<|> EmptyAPI
+
+type HelloRoute = "hello" :> QueryParam "name" Text :> Get '[PlainText] Text
+
+type API auths = (SAS.Auth auths AuthenticatedUser :> U.UserAPI)
+  :<|> HelloRoute :<|> EmptyAPI
+
+hello :: Maybe Text -> U.UserApp Text
+hello name = do
+  let name' = fromMaybe "Sensei!" name
+  logInfo $ "Saying hello to " <> display name'
+  return $ "Hello " <> name' <> "!"
+
 
 appAPI :: Proxy (API '[SAS.JWT])
 appAPI = Proxy
@@ -36,7 +47,7 @@ main = do
     jwtCfg <- getJWTAuthSettings
     let cookieCfg = defaultCookieSettings {cookieIsSecure = SAS.NotSecure}
         sctx = cookieCfg :. jwtCfg :. chakraErrorFormatters :. EmptyContext
-        appServer = U.server :<|> emptyServer
+        appServer = U.server :<|> hello :<|> emptyServer
     -- Run API server with JWT auth and in-mem user repo
     runChakraAppWithMetrics
       middlewares
