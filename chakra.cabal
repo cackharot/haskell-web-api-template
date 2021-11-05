@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 28bc1047ee98f9a6c0a3f145f005b69d2b79cec5f21822c87c70f069953a2775
+-- hash: 0fcbb6fa15dd051d148a56f9889c7872ac15b1b00ad17d9fe3af925cce540e6c
 
 name:           chakra
 version:        0.1.1
@@ -103,7 +103,7 @@ executable chakra-exe
       Paths_chakra
   hs-source-dirs:
       examples
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -O -eventlog -prof -with-rtsopts=-N -with-rtsopts=-T
   build-depends:
       aeson
     , ansi-terminal

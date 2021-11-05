@@ -5,7 +5,8 @@ DIST=$(CWD)/dist
 APP_NAME=chakra-exe
 PORT?=3000
 HTTPS_PORT?=3443
-OPTS=+RTS -N2 -RTS
+ OPTS=+RTS -N4 -xn -A32m -RTS # non moving gc
+# OPTS=+RTS -N4 -qg -A128m -RTS # no parallel gc
 
 help: ## Print documentation
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -29,10 +30,10 @@ run-watch: ## Build & Runs the program watching for file changes
 	$(STACK) build --fast --file-watch --exec "$(CWD)/scripts/killRun.sh"
 
 runp: ## Runs the program binary directly
-	$(STACK) exec $(APP_NAME) -- $(OPTS) --port $(PORT)
+	$(BIN)/$(APP_NAME) $(OPTS) --port $(PORT)
 
 run-prof:
-	$(BIN)/$(APP_NAME) --port $(PORT) +RTS -N4 -p -A32m -RTS
+	$(BIN)/$(APP_NAME) --port $(PORT) +RTS -N3 -qg -l -p -A128m -RTS
 
 runhttps: ## Runs server on HTTPS
 	$(STACK) exec $(APP_NAME) -- $(OPTS) --port $(HTTPS_PORT) --protocol http+tls  --tlskey certs/localhost.key --tlscert certs/localhost.crt

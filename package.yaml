@@ -100,7 +100,9 @@ executables:
     ghc-options:
       - -threaded
       - -rtsopts
-      # - -prof
+      - -O
+      - -eventlog
+      - -prof
       - -with-rtsopts=-N
       - -with-rtsopts=-T
 
