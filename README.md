@@ -95,6 +95,7 @@ packages:
 - .
 extra-deps:
 - chakra-0.1.1
+- wai-cli-0.2.3
 ```
 
 A stack project template is also available for bootstraping quickly
