@@ -11,48 +11,6 @@ packages:
       sha256: 0b2f8570e15d502cfddd524741b24e4f4a639b0d18ead18f79a0444c25cc0812
   original:
     hackage: wai-cli-0.2.3
-- completed:
-    hackage: prometheus-metrics-ghc-1.0.1.1@sha256:d378a7186a967140fe0e09d325fe5e3bfd7b77a1123934b40f81fdfed2eacbdc,1233
-    pantry-tree:
-      size: 293
-      sha256: 0732085a4148b269bbc15eeb7ab422e65ac287878a42a7388a7b6e140ec740e5
-  original:
-    hackage: prometheus-metrics-ghc-1.0.1.1
-- completed:
-    hackage: wai-middleware-prometheus-1.0.0@sha256:1625792914fb2139f005685be8ce519111451cfb854816e430fbf54af46238b4,1314
-    pantry-tree:
-      size: 307
-      sha256: 6d64803c639ed4c7204ea6fab0536b97d3ee16cdecb9b4a883cd8e56d3c61402
-  original:
-    hackage: wai-middleware-prometheus-1.0.0
-- completed:
-    hackage: servant-auth-0.4.0.0@sha256:01d02dfb7df4747fc96442517146d7d4ab0e575e597a124e238e8763036ea4ff,2125
-    pantry-tree:
-      size: 332
-      sha256: a7ec2c54fddfa417ee2467f1131b1d83ad43cc29ddfd4b98869fc924e4b5e980
-  original:
-    hackage: servant-auth-0.4.0.0
-- completed:
-    hackage: servant-auth-server-0.4.6.0@sha256:b411b44f4252e91e5da2455d71a7113c8b5b8ff2d943d19b2ddedcfcf0392351,5111
-    pantry-tree:
-      size: 1376
-      sha256: 8cd29612112546a02085e2cb30dd5a72ea46ed81e644195c589d0b26652279cb
-  original:
-    hackage: servant-auth-server-0.4.6.0
-- completed:
-    hackage: servant-server-0.18.2@sha256:56679af62ab8820a2108da6153d9ae9dde37199e62172365bdaea1458c3f7c2d,5482
-    pantry-tree:
-      size: 2614
-      sha256: 3ac7430134439e4b67f0f5333f63b89d0cb7de5e2e07f0af7801c8e223942b9c
-  original:
-    hackage: servant-server-0.18.2
-- completed:
-    hackage: servant-0.18.2@sha256:f8c9f0e9891a3ada1337a3c0b369333a3b5a2d0909dd3cd09d79bc26adeaca44,5298
-    pantry-tree:
-      size: 2662
-      sha256: e930e814de1aa4d24274bdf18341a50b7ed38604ae4734f730e09238ac5bf7e2
-  original:
-    hackage: servant-0.18.2
 snapshots:
 - completed:
     size: 586069

@@ -3,10 +3,10 @@ module Network.Wai.Middleware.Info
        (info)
 where
 
-import qualified Data.ByteString.Lazy      as LB
 import           Network.HTTP.Types        (methodGet, status200)
 import           Network.HTTP.Types.Header (hContentType)
 import           Network.Wai
+import qualified RIO.ByteString.Lazy       as LB
 
 info :: LB.ByteString -> Middleware
 info payload app req sendResponse =

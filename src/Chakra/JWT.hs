@@ -5,37 +5,29 @@
 -- |Contains JWT authentication settings
 module Chakra.JWT where
 
-import           Control.Lens         (preview)
-import           Control.Monad.Except (Monad (return))
-import           Crypto.JOSE          (JWK, JWKSet (..))
-import           Crypto.JWT           (StringOrURI, string, uri)
-import qualified Data.Aeson           as Aeson
-import           Data.ByteString      (readFile)
-import qualified Data.Text            as T
-import           Network.URI          (parseURI)
-import           RIO                  (Eq ((==)), IO, Maybe (Just, Nothing),
-                                       Semigroup ((<>)), const, either, error,
-                                       fromMaybe, id, maybe, ($), (++))
-import           Servant.Auth.Server  (IsMatch (..), JWTSettings (..),
-                                       generateKey)
-import           System.Environment   (lookupEnv)
+import           Crypto.JOSE         (JWK, JWKSet (..))
+import           Crypto.JWT          (StringOrURI, string, uri)
+import qualified Data.Aeson          as Aeson
+import           Network.URI         (parseURI)
+import           RIO
+import           RIO.ByteString      (readFile)
+import qualified RIO.Text            as T
+import           Servant.Auth.Server (IsMatch (..), JWTSettings (..),
+                                      generateKey)
+import           System.Environment  (lookupEnv)
 
 -- |Build JWT settings to be used in Servant Auth context
 -- Looks for `JWK_AUDIENCES` and `JWK_PATH` in environment values
 -- to load the sig file and value to verify the incoming jwt audience claim
-getJWTAuthSettings :: IO JWTSettings
+getJWTAuthSettings :: MonadUnliftIO m => m JWTSettings
 getJWTAuthSettings = do
-  jwkSet <- acquireJwks
-  signKey <- generateKey
-  audienceCfg <- lookupEnv "JWK_AUDIENCES"
+  jwkSet <- liftIO acquireJwks
+  signKey <- liftIO generateKey
+  audienceCfg <- liftIO $ lookupEnv "JWK_AUDIENCES"
   let audMatches = maybe (const Matches) checkAud audienceCfg
       checkAud audConfig = \tokenAud ->
-        if preview uri tokenAud == parseURI audConfig then
-          Matches
-        else if preview string tokenAud == Just (T.pack audConfig) then
-          Matches
-        else
-          DoesNotMatch
+        if RIO.preview uri tokenAud == parseURI audConfig || RIO.preview string tokenAud == Just (T.pack audConfig) then
+          Matches else DoesNotMatch
   return $ buildJWTSettings signKey jwkSet audMatches
 
 buildJWTSettings :: JWK -> JWKSet -> (StringOrURI -> IsMatch) -> JWTSettings

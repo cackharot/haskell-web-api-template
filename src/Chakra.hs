@@ -1,7 +1,7 @@
 {-# OPTIONS_HADDOCK prune #-}
 {-# LANGUAGE Trustworthy #-}
 
-{-| 
+{-|
 This module re-exports all functionality of this package for easy use.
 Users expected to import this module only.
 
@@ -67,13 +67,13 @@ module Chakra
   )
 where
 
-import Chakra.App
-import Chakra.Config
-import Chakra.JWT
-import Chakra.Logging
-import Chakra.Types
-import Chakra.Util
-import RIO
+import           Chakra.App
+import           Chakra.Config
+import           Chakra.JWT
+import           Chakra.Logging
+import           Chakra.Types
+import           Chakra.Util
+import           RIO
 
 -- | Basic application context, mostly used in examples.
 -- For real life you need to create one for your application

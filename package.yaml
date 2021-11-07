@@ -33,20 +33,13 @@ tested-with: GHC==8.10.7
 dependencies:
   - base >= 4.11 && < 10
   - rio
-  - time
-  - text
-  - mtl
   - data-default
   - data-has
-  - lens
   - network-uri
   - bytestring
-  - string-conversions
   - cryptonite
   - jose
-  - unordered-containers
   - transformers
-  - dotenv
   - envy
   - aeson
   - http-types
@@ -54,15 +47,12 @@ dependencies:
   - wai
   - wai-extra
   - wai-cli
-  - options
-  - streaming-commons
-  - ansi-terminal
   - prometheus-client
   - wai-middleware-prometheus
   - prometheus-metrics-ghc
-  - servant-server >= 0.18.2
-  - servant-auth >= 0.4.0.0
-  - servant-auth-server >= 0.4.6.0
+  - servant-server # >= 0.18.2
+  - servant-auth #>= 0.4.0.0
+  - servant-auth-server #>= 0.4.6.0
   - fast-logger
   - iproute
   - network
@@ -96,12 +86,13 @@ executables:
     dependencies:
       - chakra
       - optparse-simple
+      - dotenv
+      - unordered-containers
 
     ghc-options:
       - -threaded
       - -rtsopts
-      - -O
-      - -eventlog
+      # - -eventlog
       # - -prof
       - -with-rtsopts=-N
       - -with-rtsopts=-T

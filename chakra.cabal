@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ddfac682d66f52666d125f6a5162eab61043d45465389c386e3a45fd50331d93
+-- hash: e0ea050f431aab024199de31ebbeaa04193373c1703450ee2efdd26f817d5445
 
 name:           chakra
 version:        0.1.1
@@ -60,35 +60,25 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
       aeson
-    , ansi-terminal
     , base >=4.11 && <10
     , bytestring
     , cryptonite
     , data-default
     , data-has
-    , dotenv
     , envy
     , fast-logger
     , http-types
     , iproute
     , jose
-    , lens
-    , mtl
     , network
     , network-uri
-    , options
     , prometheus-client
     , prometheus-metrics-ghc
     , rio
-    , servant-auth >=0.4.0.0
-    , servant-auth-server >=0.4.6.0
-    , servant-server >=0.18.2
-    , streaming-commons
-    , string-conversions
-    , text
-    , time
+    , servant-auth
+    , servant-auth-server
+    , servant-server
     , transformers
-    , unordered-containers
     , wai
     , wai-cli
     , wai-extra
@@ -103,10 +93,9 @@ executable chakra-exe
       Paths_chakra
   hs-source-dirs:
       examples
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -O -eventlog -with-rtsopts=-N -with-rtsopts=-T
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -with-rtsopts=-T
   build-depends:
       aeson
-    , ansi-terminal
     , base >=4.11 && <10
     , bytestring
     , chakra
@@ -119,22 +108,15 @@ executable chakra-exe
     , http-types
     , iproute
     , jose
-    , lens
-    , mtl
     , network
     , network-uri
-    , options
     , optparse-simple
     , prometheus-client
     , prometheus-metrics-ghc
     , rio
-    , servant-auth >=0.4.0.0
-    , servant-auth-server >=0.4.6.0
-    , servant-server >=0.18.2
-    , streaming-commons
-    , string-conversions
-    , text
-    , time
+    , servant-auth
+    , servant-auth-server
+    , servant-server
     , transformers
     , unordered-containers
     , wai
@@ -155,37 +137,27 @@ test-suite chakra-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
-    , ansi-terminal
     , base >=4.11 && <10
     , bytestring
     , chakra
     , cryptonite
     , data-default
     , data-has
-    , dotenv
     , envy
     , fast-logger
     , hspec
     , http-types
     , iproute
     , jose
-    , lens
-    , mtl
     , network
     , network-uri
-    , options
     , prometheus-client
     , prometheus-metrics-ghc
     , rio
-    , servant-auth >=0.4.0.0
-    , servant-auth-server >=0.4.6.0
-    , servant-server >=0.18.2
-    , streaming-commons
-    , string-conversions
-    , text
-    , time
+    , servant-auth
+    , servant-auth-server
+    , servant-server
     , transformers
-    , unordered-containers
     , wai
     , wai-cli
     , wai-extra

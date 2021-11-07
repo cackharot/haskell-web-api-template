@@ -3,12 +3,6 @@ packages:
 - .
 extra-deps:
 - wai-cli-0.2.3
-- prometheus-metrics-ghc-1.0.1.1
-- wai-middleware-prometheus-1.0.0
-- servant-auth-0.4.0.0
-- servant-auth-server-0.4.6.0
-- servant-server-0.18.2
-- servant-0.18.2
 
 # flags:
 #   wai-cli:

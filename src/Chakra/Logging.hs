@@ -1,9 +1,9 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE DataKinds            #-}
+{-# LANGUAGE DeriveGeneric        #-}
+{-# LANGUAGE FlexibleInstances    #-}
+{-# LANGUAGE OverloadedStrings    #-}
+{-# LANGUAGE TypeFamilies         #-}
+{-# LANGUAGE TypeOperators        #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
@@ -18,28 +18,23 @@ module Chakra.Logging
   )
 where
 
-import Data.Aeson
-  ( ToJSON (toEncoding),
-    defaultOptions,
-    encode,
-    genericToEncoding,
-  )
-import Data.Has (Has (hasLens))
-import qualified Data.Text.Encoding as T
-import RIO
-import System.Log.FastLogger
+import           Data.Aeson            (ToJSON (toEncoding), defaultOptions,
+                                        encode, genericToEncoding)
+import           Data.Has              (Has (hasLens))
+import           RIO
+import           System.Log.FastLogger
 
 type ModLogger = LogFunc
 
 type Formatter = TimedFastLogger -> CallStack -> LogSource -> LogLevel -> Utf8Builder -> IO ()
 
 data LogMessage = LogMessage
-  { message :: !Text,
-    logSource :: !Text,
-    callStack :: !Text,
-    timestamp :: !Text,
-    level :: !Text,
-    appVersion :: !Text,
+  { message        :: !Text,
+    logSource      :: !Text,
+    callStack      :: !Text,
+    timestamp      :: !Text,
+    level          :: !Text,
+    appVersion     :: !Text,
     appEnvironment :: !Text
   }
   deriving (Eq, Show, Generic)
@@ -66,10 +61,10 @@ newLogger logtype formatter = do
 jsonFormatter :: Text -> Text -> Formatter
 jsonFormatter envName appVer logger cs src logLvl msg = logger buildJsonLogMsg
   where
-    showLevel LevelDebug = "debug"
-    showLevel LevelInfo = "info"
-    showLevel LevelWarn = "warn"
-    showLevel LevelError = "error"
+    showLevel LevelDebug     = "debug"
+    showLevel LevelInfo      = "info"
+    showLevel LevelWarn      = "warn"
+    showLevel LevelError     = "error"
     showLevel (LevelOther t) = "" <> t <> ""
     buildJsonLogMsg t =
       toLogStr $
@@ -77,7 +72,7 @@ jsonFormatter envName appVer logger cs src logLvl msg = logger buildJsonLogMsg
           (utf8BuilderToText msg)
           (utf8BuilderToText . displayBytesUtf8 . fromLogStr . toLogStr $ src)
           (utf8BuilderToText $ displayCallStack cs)
-          (T.decodeUtf8 t)
+          (utf8BuilderToText . displayBytesUtf8 $  t)
           (showLevel logLvl)
           appVer
           envName

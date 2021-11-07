@@ -1,10 +1,10 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE DataKinds           #-}
+{-# LANGUAGE FlexibleContexts    #-}
+{-# LANGUAGE NoImplicitPrelude   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeApplications #-}
-{-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE UnicodeSyntax #-}
-{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE TypeApplications    #-}
+{-# LANGUAGE TypeOperators       #-}
+{-# LANGUAGE UnicodeSyntax       #-}
 
 -- |Defines convenience functions to run a servant base api in wrap server
 module Chakra.App
@@ -12,22 +12,22 @@ module Chakra.App
   )
 where
 
-import Control.Monad.Trans.Except (ExceptT (..))
-import Data.Aeson
-import Data.Proxy
-import Network.Wai
-import Network.Wai.Cli
-import Network.Wai.Middleware.Health (health)
-import Network.Wai.Middleware.Info (info)
+import           Chakra.RequestLogging
+import qualified Chakra.Types                      as T (InfoDetail (..))
+import           Chakra.Util
+import           Control.Monad.Trans.Except        (ExceptT (..))
+import           Data.Aeson
+import           Data.Proxy
+import           Network.Wai
+import           Network.Wai.Cli
+import           Network.Wai.Middleware.Health     (health)
+import           Network.Wai.Middleware.Info       (info)
 import qualified Network.Wai.Middleware.Prometheus as P
-import qualified Prometheus as P
-import qualified Prometheus.Metric.GHC as P
-import RIO
-import Chakra.RequestLogging
-import Servant as X hiding (And, Handler)
+import qualified Prometheus                        as P
+import qualified Prometheus.Metric.GHC             as P
+import           RIO
+import           Servant                           as X hiding (And, Handler)
 import qualified Servant
-import qualified Chakra.Types as T (InfoDetail (..))
-import Chakra.Util
 
 -- | Setup servant with custom context so that the handers can take custom effects/ctx
 chakraApp ::
@@ -36,7 +36,7 @@ chakraApp ::
     HasContextEntry (ψ .++ DefaultErrorFormatters) ErrorFormatters
   ) =>
   -- |Servant Context e.g., EmptyContext
-  Context ψ -> 
+  Context ψ ->
   -- |Application Has stacking in tuple type e.g., (ModLogger,ModHttpClient,UserRepo)
   β ->
   -- | Servant API Proxy

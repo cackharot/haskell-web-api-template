@@ -81,3 +81,4 @@ chakra-exe.prof.html
 tmp/
 cache/
 packagedb/
+*.tar.gz

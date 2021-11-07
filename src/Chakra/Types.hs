@@ -8,10 +8,10 @@
 -- |Types
 module Chakra.Types where
 
-import Data.Default
-import qualified Data.Aeson             as A
-import qualified Data.Text              as T
+import qualified Data.Aeson          as A
+import           Data.Default
 import           RIO
+import qualified RIO.Text            as T
 import           Servant.Auth.Server
 import           System.Envy
 

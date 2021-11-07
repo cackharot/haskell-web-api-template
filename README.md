@@ -36,7 +36,7 @@ To create a bare minimum API service all you need is below:
 
 ```haskell
 #!/usr/bin/env stack
-{- stack --resolver lts-14.27 runghc
+{- stack --resolver lts-18.14 runghc
  --package chakra
 -}
 {-# LANGUAGE NoImplicitPrelude, OverloadedStrings, UnicodeSyntax, DataKinds, TypeOperators #-}
@@ -90,18 +90,11 @@ dependencies:
 - servant-server
 
 # stack.yaml
-resolver: lts-14.27
+resolver: lts-18.14
 packages:
 - .
 extra-deps:
-- git: https://github.com/cackharot/haskell-web-api-template.git
-  commit: 70425ea54e4bc117582cdc0495f2b88827dbbf52
-- prometheus-metrics-ghc-1.0.1.1
-- wai-middleware-prometheus-1.0.0
-- servant-auth-0.4.0.0
-- servant-auth-server-0.4.6.0
-- servant-server-0.18.2
-- servant-0.18.2
+- chakra-0.1.1
 ```
 
 A stack project template is also available for bootstraping quickly

@@ -9,13 +9,11 @@ module Chakra.Util
 where
 
 import           Data.Aeson
-import qualified Data.ByteString.Lazy as L (ByteString)
 import           Data.Has
--- import           Data.Text.Encoding       (decodeUtf8With)
--- import           Data.Text.Encoding.Error (lenientDecode)
-import           Network.HTTP.Types   (hContentType)
+import           Network.HTTP.Types  (hContentType)
 import           Network.Wai
 import           RIO
+import qualified RIO.ByteString.Lazy as L (ByteString)
 import           Servant
 
 -- | Construct plain ServerError Type with given status code and error text

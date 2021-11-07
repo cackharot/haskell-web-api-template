@@ -8,10 +8,10 @@ module Main (main) where
 
 import           Chakra
 import           Configuration.Dotenv       (defaultConfig, loadFile)
-import qualified Data.Text                  as T
 import           Options.Applicative.Simple
 import qualified Paths_chakra
 import           RIO
+import qualified RIO.Text                   as T
 import           Servant
 import           Servant.Auth.Server        as SAS
 import qualified User                       as U
