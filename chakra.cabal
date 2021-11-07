@@ -7,7 +7,7 @@ cabal-version: 1.12
 -- hash: 5aeb97e416137f55b01ac39fe385506fd11c31d0e6d13907859c083a44c85279
 
 name:           chakra
-version:        0.1.1
+version:        0.1.2
 synopsis:       A REST Web Api server template for building (micro)services.
 
 description:    A REST Web Api server template, that serves as a reference

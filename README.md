@@ -94,7 +94,7 @@ resolver: lts-18.14
 packages:
 - .
 extra-deps:
-- chakra-0.1.1
+- chakra-0.1.2
 - wai-cli-0.2.3
 ```
 
