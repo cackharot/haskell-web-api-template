@@ -102,7 +102,7 @@ executables:
       - -rtsopts
       - -O
       - -eventlog
-      - -prof
+      # - -prof
       - -with-rtsopts=-N
       - -with-rtsopts=-T
 
