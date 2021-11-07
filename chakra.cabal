@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e0ea050f431aab024199de31ebbeaa04193373c1703450ee2efdd26f817d5445
+-- hash: 5aeb97e416137f55b01ac39fe385506fd11c31d0e6d13907859c083a44c85279
 
 name:           chakra
 version:        0.1.1
@@ -32,7 +32,7 @@ copyright:      2020 Cackharot
 license:        MIT
 license-file:   LICENSE
 tested-with:
-    GHC==8.10.7
+    GHC==8.8.4 || ==8.10.7 || ==9.0.1
 build-type:     Simple
 extra-source-files:
     README.md

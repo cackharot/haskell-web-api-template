@@ -3,6 +3,13 @@ packages:
 - .
 extra-deps:
 - wai-cli-0.2.3
+- git: https://github.com/haskell-servant/servant.git
+  commit: 4e4ad495efc50aed5af57a9bcf6a426992294477
+  subdirs:
+    - servant-auth/servant-auth-server
+# - servant-auth-server-0.4.6.0
+# - base64-bytestring-1.1.0.0
+# - base64-bytestring-1.2.1.0
 
 # flags:
 #   wai-cli:

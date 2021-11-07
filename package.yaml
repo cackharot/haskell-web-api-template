@@ -28,7 +28,7 @@ copyright:           2020 Cackharot
 extra-source-files:
   - README.md
 
-tested-with: GHC==8.10.7
+tested-with: GHC==8.8.4 || ==8.10.7 || ==9.0.1
 
 dependencies:
   - base >= 4.11 && < 10

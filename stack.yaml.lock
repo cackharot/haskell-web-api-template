@@ -11,6 +11,19 @@ packages:
       sha256: 0b2f8570e15d502cfddd524741b24e4f4a639b0d18ead18f79a0444c25cc0812
   original:
     hackage: wai-cli-0.2.3
+- completed:
+    subdir: servant-auth/servant-auth-server
+    name: servant-auth-server
+    version: 0.4.6.0
+    git: https://github.com/haskell-servant/servant.git
+    pantry-tree:
+      size: 1469
+      sha256: 16b8a55e761c60aed667c6dd9901c8179f347e061f07a7812a3abf7798178efe
+    commit: 4e4ad495efc50aed5af57a9bcf6a426992294477
+  original:
+    subdir: servant-auth/servant-auth-server
+    git: https://github.com/haskell-servant/servant.git
+    commit: 4e4ad495efc50aed5af57a9bcf6a426992294477
 snapshots:
 - completed:
     size: 586069

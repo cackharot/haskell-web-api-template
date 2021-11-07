@@ -19,6 +19,9 @@ help: ## Print documentation
 build: ## Build the project and generate executable
 	$(STACK) build --local-bin-path $(BIN) --copy-bins
 
+build-nightly: ## Build the project using nightly resolver
+	$(STACK) build --resolver nightly --haddock --test --bench --no-run-benchmarks
+
 build-prof:
 	$(STACK) build --local-bin-path $(BIN) --copy-bins --profile
 
